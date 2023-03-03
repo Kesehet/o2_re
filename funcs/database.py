@@ -4,36 +4,13 @@ from . import users as U
 from . import shell as SHELL
 import json
 from cryptography.fernet import Fernet
-import couchdb
 
-# Set up the connection to the CouchDB server
-server = couchdb.Server(S.CouchDBLogin)
-# Check if the connection was successful
-if server:
-    print("Connected to CouchDB!")
-else:
-    print("Failed to connect to CouchDB.")
+
 
 
 db = {}
 
 Log.writeLog("Database","Update",S.databaseType +" is being used." )
-
-def set(requests,pluginName,key,value):
-  DatabaseName = ""
-  if S.databaseType == "couchdb" and DatabaseName in server:
-    pass
-  else:
-    raise "Database doesnt exist. Please check if databaseType and databaseName is properly defined"
-  pass
-
-def get(requests,pluginName,key,defaultValue=""):
-  DatabaseName = ""
-  if S.databaseType == "couchdb" and DatabaseName in server:
-    pass  
-  else:
-    raise "Database doesnt exist. Please check if databaseType and databaseName is properly defined"
-  pass
 
 
 def replitGet(key):
