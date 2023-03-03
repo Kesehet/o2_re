@@ -3,6 +3,9 @@ sudo apt-get update
 sudo apt-get upgrade
 sudo apt install curl net-tools
 
+git checkout main
+git merge origin/main
+
 #Install Azure CLI only for MASTER
 #curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
