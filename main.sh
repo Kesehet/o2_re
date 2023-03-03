@@ -15,14 +15,14 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 #For All
 sudo apt-get -y install python3-pip
 source ./venv/bin/activate
-pip install -t lib flask 
-pip install -t lib waitress 
-pip install -t lib psutil
-pip install -t lib google-auth google-auth2-tool google-auth-httplib2 google-api-python-client --upgrade
-pip install -t lib google-auth google-auth-httplib2 google-api-python-client --upgrade
-pip install -t lib --upgrade google-auth google-auth-httplib2 google-api-python-client
-pip install -t lib azure
-pip install -t lib azure-mgmt-compute azure-mgmt-network azure-common azure-identity msrestazure
+pip install  flask 
+pip install  waitress 
+pip install  psutil
+pip install  google-auth google-auth2-tool google-auth-httplib2 google-api-python-client --upgrade
+pip install  google-auth google-auth-httplib2 google-api-python-client --upgrade
+pip install  --upgrade google-auth google-auth-httplib2 google-api-python-client
+pip install  azure
+pip install  azure-mgmt-compute azure-mgmt-network azure-common azure-identity msrestazure
 sudo apt-get -y update
 sudo apt-get -y upgrade
 
