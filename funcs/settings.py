@@ -23,7 +23,7 @@ Urls = {
 
 databaseType = "couchdb" #"000webhost" #"mongodb"
 
-gClientId = "342128468133-la93ntc9t4ibnlq74h27brckpsj32n5u.apps.googleusercontent.com"
+gClientId = "342128468133-amah5bt2bcgk2stcio4p0423923alnnt.apps.googleusercontent.com"
 
 encryptionKey = "iu6pxcSjuDt7TuGx_Y-iHQqp6h-9tlbh_b-cXKDuJUM=" #os.environ['encryption_key']
 
