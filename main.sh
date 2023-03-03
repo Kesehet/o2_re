@@ -1,7 +1,7 @@
 sudo apt update
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt install curl net-tools
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install curl net-tools
 
 
 
