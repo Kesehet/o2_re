@@ -3,7 +3,10 @@ sudo apt-get update
 sudo apt-get upgrade
 sudo apt install curl net-tools
 
+
+
 git checkout main
+git pull
 git merge origin/main
 
 #Install Azure CLI only for MASTER
