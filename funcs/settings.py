@@ -7,7 +7,7 @@ IP = '0.0.0.0'
 PORT = 80
 
 Urls = {
-  "base":"https://control.3duverse.com:"+str(PORT),
+  "base":"https://control.3duverse.com",
   "dashboard":"/dashy",
   "login":"/login",
   "google_login_check":"/google_is_really_cool",
