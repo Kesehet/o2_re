@@ -24,4 +24,4 @@ pip install couchdb
 sudo apt-get -y update
 sudo apt-get -y upgrade
 
-python3 -m main
+sudo python3 -m main
