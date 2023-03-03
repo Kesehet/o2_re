@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<title>Dashboard | {{data.pageTitle}}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" /-->
+<script src="https://kit.fontawesome.com/b6180cb8b3.js" crossorigin="anonymous"></script>
+<script src="https://accounts.google.com/gsi/client"></script>
+<meta name="google-signin-client_id" content="{{data.Settings.gClientId}}"/>
+<link rel="shortcut icon" href="{{ data.Settings.favicon }}">
+
+  <style>
+    /* Style for the sidebar */
+    .sidebar {
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background-color:#313946;
+      color: white;
+      overflow-x: hidden;
+      padding-top: 20px;
+    }
+
+    /* Style for the links inside the sidebar */
+    .sidebar a {
+      padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      font-size: 20px;
+      display: block;
+    }
+
+    /* Style for the active link */
+    .active {
+      background-color: #2288e6;
+      color: white;
+    }
+    #canvas{
+        height: 100vh;
+        margin-left: 10%;
+    }
+    @font-face {
+        font-family: 'PublicSans';
+        src: url('/static/fonts/PublicSans-Regular.ttf') format('truetype');
+        font-weight: 100;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'PublicSans';
+        src: url('/static/fonts/PublicSans-Bold.ttf') format('truetype');
+        font-weight: bold;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'PublicSans';
+        src: url('/static/fonts/PublicSans-Black.ttf') format('truetype');
+        font-weight: bolder;
+        font-style: normal;
+    }
+    
+
+        @font-face {
+        font-family: 'PublicSans';
+        src: url('/static/fonts/PublicSans-BoldItalic.ttf') format('truetype');
+        font-weight: bold;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: 'PublicSans';
+        src: url('/static/fonts/PublicSans-Italic.ttf') format('truetype');
+        font-weight: normal;
+        font-style: italic;
+    }
+    .publicSans{
+        font-family: 'PublicSans', sans-serif;
+        color: #313946;
+    }
+    .blue{
+        background-color: #2288E6;
+        color: white;
+        
+    }
+    .black{
+        background-color: #313946;
+        color: white;
+        
+    }
+    .blueText{
+        color: #2288E6 !important;
+    }
+    .blackText{
+        color: #313946 !important;
+    }
+    .pink{
+        background-color: #ff2dff;
+        color: white;
+    }
+    .orange{
+        background-color: #ffaa2b;
+        color: white;
+    }
+    .lightFont{
+        font-weight: 100;
+    }
+    .heavyFont{
+        font-weight: 600;
+    }
+    .bold{
+        font-weight: bold;
+    }
+    .bolder{
+        font-weight: 400;
+    }
+    .dashBorder{
+        background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23313946' stroke-width='4' stroke-dasharray='11' stroke-dashoffset='4' stroke-linecap='round'/%3e%3c/svg%3e");
+    }
+    .two-line-ellipsis {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
+    .w3-light-grey, .w3-hover-light-grey:hover, .w3-light-gray, .w3-hover-light-gray:hover {
+        color: #313946 !important;
+        background-color: #f1f1f1 !important;
+    }
+    .grey, .gray{
+        background-color: #cad1df;
+        color: #313946;
+    }
+    .grayText{
+        color: #cad1df;
+    }
+    .icon{
+        
+        color: #cad1df;
+        font-size: 15vh;
+    }
+    .smallIcons{
+        color: #cad1df;
+        font-size: 3vh;
+    }
+    td{
+        padding-top: 8px;
+        padding-bottom: 8px;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+    .boxPad{
+        padding-left: 5vw;
+        padding-right: 5vw;
+        padding-top: 0vh;
+        padding-bottom: 0vh;
+    }
+    input[type=text]:focus {
+        border: 0px solid #FFF !important;
+        background-color: #fff;
+    }
+   @media (min-width: 1581px) {
+      .makeMeQuarterOnHover:hover{
+        width: 15% !important;
+
+        max-width: 100vw !important;
+      }
+    }
+    @media (min-width: 901px) {
+      .makeMeQuarterOnHover:hover{
+        width: 25% !important;
+
+        max-width: 100vw !important;
+      }
+    }
+    @media (max-width: 900px) {
+    	.hideOnSmall{
+            width:15% !important;
+        	display:none !important;
+            padding:0px !important;
+    	}
+    }
+    .capitalize{
+      text-transform: capitalize;
+    }
+   </style>
+<body>
+
+<div class="w3-sidebar w3-tooltip black publicSans heavyFont w3-collapse w3-card w3-animate-left makeMeQuarterOnHover" style="width:100px;box-shadow:none;" id="mySidebar">
+
+
+    <div class="w3-button w3-col l12 m12 s12 publicSans w3-hover-light-gray w3-round" style="font-weight: 600;padding: 0px;color:white;" >
+        <div class=" w3-col l3 m3 s3 ">
+            <img class="w3-circle" id="user_dp" src="/static/img/temp_dp.png" alt="ProfilePics" style="width: 80px;height: 80px;margin-left: 10px;margin-top: 10px;">
+        </div>
+        <div class="w3-text w3-animate-right hideOnSmall " style=" padding-top: 45px; margin-left: 32px !important;">View Profile</div>
+      </div>
+
+
+    
+
+
+  <div class="w3-button w3-padding w3-col l12 m12 s12 blueText" onclick="openLink('{{data.Settings.Urls.dashboard}}')" style="margin-top: 10vh;margin-bottom: 7vh;" >
+    <div class="w3-container w3-col l3 m3 s3 w3-padding-large">
+        <i class="fa fa-home"></i>
+    </div>
+    <div class="w3-text w3-animate-left w3-container hideOnSmall w3-padding-large">Home</div>
+  </div>
+
+    
+
+  {%for i in data.pluginLinks%}
+    {% if i.name == data.pageTitle %}
+      <div class="w3-button w3-padding w3-col l12 m12 s12 blue" onclick="openLink('{{i.link}}')" style="margin-top: 3vh;">
+        <div class="w3-container w3-col l3 m3 s3 w3-padding-large">
+            <i class="fa fa-{{i.fa_icon}}"></i>
+        </div>
+        <div class="w3-text capitalize w3-animate-right w3-container hideOnSmall w3-padding-large">{{i.name}}</div>
+      </div>
+    {% else %}
+    
+      <div class="w3-button w3-padding w3-col l12 m12 s12" onclick="openLink('{{i.link}}')" style="margin-top: 3vh;">
+        <div class="w3-container w3-col l3 m3 s3 w3-padding-large">
+            <i class=" fa fa-{{i.fa_icon}}"></i>
+        </div>
+        <div class="w3-text capitalize w3-animate-right w3-container hideOnSmall w3-padding-large">{{i.name}}</div>
+      </div>
+    {% endif %}
+  {%endfor%}
+
+</div>
+
+<div id="main" onmouseover="w3_close()" class="w3-main publicSans makeMeQuarterOnHoverOpposite" style="margin-left:100px">
+<div class="black w3-container " style="padding-top: 15px;padding-bottom: 15px;" >
+  <button class="w3-button  w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
+  <div class="" style="padding-top: 16px;padding-bottom: 16px;">
+    <div class="bold w3-large">Hello, <span id="user_name" >Cloud Legend</span></div>
+  </div>
+</div>
+
+<div class="w3-container lightFont">
+  {{data.pluginHTML | safe}}
+</div>
+   
+</div>
+
+<script>
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+function openLink(link){
+  window.location.href = link;
+}
+</script>
+<script>
+
+  var GoogleUser;
+
+  function onSignIn(googleUser) {
+    
+    GoogleUser = googleUser;
+      var id_token = googleUser.getAuthResponse().id_token;
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '{{data.Settings.Urls.google_login_check}}');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+      var resp = xhr.responseText;
+      if(resp == "/"){
+        signOut();
+        alert("{{data.Settings.invalidUserMessage}}");
+      }
+      if(resp != '{{data.Settings.Urls.dashboard}}'){
+        window.location.href = resp;
+      }
+      
+    };
+    xhr.send('idtoken=' + id_token);
+
+
+    isSignedIn();
+  }
+  function isSignedIn(){
+    
+    var profile = GoogleUser.getBasicProfile();
+    document.getElementById("user_name").innerHTML = profile.getName();
+    document.getElementById("user_dp").src = profile.getImageUrl();
+    console.log(profile);
+  }
+    function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    var id_token = "oldToken";
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '{{data.Settings.Urls.google_logout_check}}');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+      window.location.href = xhr.responseText;
+    };
+    xhr.send('idtoken=' + id_token);
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+
+window.onLoadCallback = function(){
+  gapi.auth2.init({
+      client_id: '{{data.Settings.gClientId}}'
+    });
+}
+
+  
+</script>
+</body>
+</html>

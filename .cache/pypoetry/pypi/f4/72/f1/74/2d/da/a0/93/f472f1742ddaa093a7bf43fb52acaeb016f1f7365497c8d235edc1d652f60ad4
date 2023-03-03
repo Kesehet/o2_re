@@ -1,0 +1,1 @@
+9999999999{"name": "pyu2f", "version": "0.1.5", "summary": "U2F host library for interacting with a U2F device over USB.", "platform": "Windows", "requires_dist": ["six"], "requires_python": null, "files": [], "_cache_version": "1.0.0"}

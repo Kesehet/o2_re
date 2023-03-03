@@ -1,0 +1,1 @@
+9999999999{"name": "unicodedata2", "version": "14.0.0", "summary": "Unicodedata backport updated to the latest Unicode version.", "platform": "any", "requires_dist": ["pytest ; extra == 'testing'", "coverage ; extra == 'testing'", "pytest-xdist ; extra == 'testing'", "pytest-randomly ; extra == 'testing'"], "requires_python": "", "files": [], "_cache_version": "1.0.0"}

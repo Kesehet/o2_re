@@ -1,0 +1,1 @@
+9999999999{"name": "MarkupSafe", "version": "2.0.1", "summary": "Safely add untrusted strings to HTML/XML markup.", "platform": "", "requires_dist": null, "requires_python": ">=3.6", "files": [], "_cache_version": "1.0.0"}
