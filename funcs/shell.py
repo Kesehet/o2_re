@@ -22,7 +22,11 @@ def execute(cmdList:list):
     try:
         return subprocess.check_output(cmdList).decode('ascii')
     except Exception as e:
-        return e.output.decode("ascii")
+        try:
+            return e.output.decode("ascii")
+        except Exception as e:
+            print(e.output)
+            return "Error: Non Ascii Character"
 
 def getAllCommands(index:int,params:dict):
     return setCommandParams(params,commands[index]["cmd"])
