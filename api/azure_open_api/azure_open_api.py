@@ -16,6 +16,6 @@ def main(request):
 
 def tasks(task):
   if task == "get-machine-by-location":
-    return SHELL.run("az account list-locations")
+    return SHELL.run("sudo az account list-locations")
 
   
