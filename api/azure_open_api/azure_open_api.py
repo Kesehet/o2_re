@@ -11,6 +11,11 @@ publicLinks = [
 import funcs.shell as SHELL
 
 def main(request):
-  return SHELL.run("az account list-locations")
+  task = request.args.get("task")
+  return tasks(task)
+
+def tasks(task):
+  if task == "get-machine-by-location":
+    return SHELL.run("az account list-locations")
 
   
