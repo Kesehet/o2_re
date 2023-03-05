@@ -33,4 +33,4 @@ invalidUserMessage = "You really shouldn't be here !"
 favicon = "https://purelifi.com/wp-content/uploads/2018/10/O2-logo.png"
 
 
-CouchDBLogin = "http://admin:6Jr9Z8L#k5F!@yxBM7%$S&KPcAfX3G2d@localhost:8443"
+CouchDBLogin = "http://admin:6Jr9Z8L#k5F!@yxBM7%$S&KPcAfX3G2d@db.3duverse.com"
