@@ -22,7 +22,7 @@ pip install google-auth google-auth2-tool google-auth-httplib2 google-api-python
 pip install google-auth google-auth-httplib2 google-api-python-client --upgrade
 pip install --upgrade google-auth google-auth-httplib2 google-api-python-client
 pip install azure-mgmt-compute
-pip install azure-mgmt-network --no-cache-dir
+pip install azure-mgmt-network
 pip install azure-common 
 pip install msrestazure
 pip install azure-identity
