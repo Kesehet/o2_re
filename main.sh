@@ -21,7 +21,6 @@ pip install psutil
 pip install google-auth google-auth2-tool google-auth-httplib2 google-api-python-client --upgrade
 pip install google-auth google-auth-httplib2 google-api-python-client --upgrade
 pip install --upgrade google-auth google-auth-httplib2 google-api-python-client
-pip install azure
 pip install azure-mgmt-compute azure-mgmt-network azure-common azure-identity msrestazure
 sudo apt-get -y update
 sudo apt-get -y upgrade

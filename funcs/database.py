@@ -7,40 +7,19 @@ from cryptography.fernet import Fernet
 
 
 
-
-db = {}
-
 Log.writeLog("Database","Update",S.databaseType +" is being used." )
-
-
-def replitGet(key):
-  if S.databaseType == "replit":
-    Log.writeLog("Database", "Update","Fetched "+key+ " From DB")
-    return db[key]
-  else:
-    Log.writeLog("Database","Error","Incorrect database in settings....")
-
-
-
-def replitSet(key,value):
-  if S.databaseType == "replit":
-    Log.writeLog("Database","Update","Inserted value: "+value+" at key: "+key+ " From DB")
-    db[key] = value
-  else:
-    Log.writeLog("Database","Error","Incorrect database in settings....")
-
 
 
 
 
 
 def getUsers():
-  cmd = "curl -sS -X GET '"+S.CouchDBLogin+"/users/_all_docs'"
+  cmd = "curl -sS -X GET "+S.CouchDBLogin+"/users/_all_docs"
   userMeta = json.loads(SHELL.execute(SHELL.cmdStringToList(cmd)))
   ret = []
   for user in userMeta["rows"]:
     ret.append(json.loads(SHELL.execute(SHELL.cmdStringToList(
-      "curl -sS -X GET '" + S.CouchDBLogin + "/users/"+user["id"] + "'"
+      "curl -sS -X GET " + S.CouchDBLogin + "/users/"+user["id"] 
     ))))
   return ret
 
