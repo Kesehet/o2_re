@@ -46,9 +46,6 @@ def template(result):
   </div>
   '''
 
-
-
-
 def create_vm(request):
   pageNo = int(request.args.get("step"))
   data = request.args.get("data")
