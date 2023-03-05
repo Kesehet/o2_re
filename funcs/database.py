@@ -35,12 +35,12 @@ def replitSet(key,value):
 
 
 def getUsers():
-  cmd = "curl -sS -X GET "+S.CouchDBLogin+"/users/_all_docs"
+  cmd = "curl -sS -X GET '"+S.CouchDBLogin+"/users/_all_docs'"
   userMeta = json.loads(SHELL.execute(SHELL.cmdStringToList(cmd)))
   ret = []
   for user in userMeta["rows"]:
     ret.append(json.loads(SHELL.execute(SHELL.cmdStringToList(
-      "curl -sS -X GET " + S.CouchDBLogin + "/users/"+user["id"]
+      "curl -sS -X GET '" + S.CouchDBLogin + "/users/"+user["id"] + "'"
     ))))
   return ret
 
