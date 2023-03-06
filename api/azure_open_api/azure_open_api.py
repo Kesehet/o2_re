@@ -25,8 +25,8 @@ def getAllLocations():
   ret = []
   dat  = json.loads(SHELL.run("sudo az account list-locations"))
   for d in dat:
-    name = d["displayName"] if d["displayName"] != None else ""
-    name2 = d["metadata"]["physicalLocation"] if d["metadata"]["physicalLocation"] != None else ""
+    name = d["metadata"]["physicalLocation"] if d["metadata"]["physicalLocation"] != None else ""
+    name2 = d["displayName"] if d["displayName"] != None else "" 
     fullName = name + ", "+ name2 if name2 != "" and name != "" else name
     latitude = d["metadata"]["latitude"] if d["metadata"]["latitude"] != None and d["metadata"]["latitude"] != "null" else "0.0"
     longitude = d["metadata"]["longitude"] if d["metadata"]["longitude"] != None and d["metadata"]["longitude"] != "null" else "0.0"

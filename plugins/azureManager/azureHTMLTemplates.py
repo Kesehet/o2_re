@@ -126,10 +126,10 @@ def create_vm_step_1(next_url:str):
             
         }
         function loadLocations() {
-            dat = JSON.parse(this.responseText.replaceAll("&#39;",'"'));
+            var dat = JSON.parse(this.responseText.replaceAll("&#39;",'"'));
             for(var i = 0 ; i < dat.length;i++){
                 var d = dat[i];
-                addPoint(d.lat,d.long,"#1fb2d0",{"cityName":d.name,"place":d.name2,desc:"Description"})
+                addPoint(d.lat,d.long,"#1fb2d0",{"cityName":d.fullName,"place":d.name2,desc:"Description"})
             }
             setOptimalList();
         }
