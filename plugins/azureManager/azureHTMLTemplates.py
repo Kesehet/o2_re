@@ -126,7 +126,7 @@ def create_vm_step_1(next_url:str):
             
         }
         function loadLocations() {
-            data = JSON.parse(this.responseText.replaceAll("&#39;",'"'));
+            dat = JSON.parse(this.responseText.replaceAll("&#39;",'"'));
             for(var i = 0 ; i < dat.length;i++){
                 var d = dat[i];
                 addPoint(d.lat,d.long,"#1fb2d0",{"cityName":d.name,"place":d.name2,desc:"Description"})
