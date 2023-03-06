@@ -27,13 +27,16 @@ def getAllLocations():
   dat  = json.loads(SHELL.run("sudo az account list-locations"))
   for d in dat:
     name = d["metadata"]["physicalLocation"] if d["metadata"]["physicalLocation"] != None else ""
-    name2 = d["displayName"] if d["displayName"] != None else "" 
+    name2 = d["displayName"] if d["displayName"] != None else ""
+    place = d["metadata"]["geographyGroup"] if d["metadata"]["geographyGroup"] != None else "" 
     fullName = name + ", "+ name2 if name2 != "" and name != "" else name
-    latitude = d["metadata"]["latitude"] if d["metadata"]["latitude"] != None and d["metadata"]["latitude"] != "null" else randint(1,100)
-    longitude = d["metadata"]["longitude"] if d["metadata"]["longitude"] != None and d["metadata"]["longitude"] != "null" else randint(1,100)
+    latitude = d["metadata"]["latitude"] if d["metadata"]["latitude"] != None and d["metadata"]["latitude"] != "null" else ""
+    longitude = d["metadata"]["longitude"] if d["metadata"]["longitude"] != None and d["metadata"]["longitude"] != "null" else ""
+    if latitude == "" or longitude == "" or name == "" or name2 == "" or place == "":
+      continue
     ret.append({
       "name":name,
-      "name2":name2,
+      "name2":place,
       "fullName":fullName,
       "lat":latitude,
       "long":longitude
