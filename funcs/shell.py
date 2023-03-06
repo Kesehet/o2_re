@@ -20,9 +20,9 @@ def run(s:str):
 
 def execute(cmdList:list):
     try:
-        return subprocess.check_output(cmdList).decode('ascii')
+        return subprocess.check_output(cmdList).decode('utf-8')
     except subprocess.CalledProcessError as e:
-        return e.output.decode("ascii")
+        return e.output.decode("utf-8")
 
 def getAllCommands(index:int,params:dict):
     return setCommandParams(params,commands[index]["cmd"])
