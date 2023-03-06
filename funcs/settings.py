@@ -1,4 +1,4 @@
-import shell as SHELL
+from funcs import shell as SHELL
 
 
 
