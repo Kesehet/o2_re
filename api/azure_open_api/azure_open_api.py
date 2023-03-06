@@ -28,7 +28,7 @@ def getAllLocations():
     ret.append({      
       "name":d["displayName"],
                   "name2":d["metadata"]["physicalLocation"],
-                              "fullName":d["metadata"]["physicalLocation"]+", "d["displayName"],
+                              "fullName":d["metadata"]["physicalLocation"]+", "+d["displayName"],
                                           "lat":d["latitude"],
                                                       "long":d["longitude"]
               })
