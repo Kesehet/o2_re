@@ -311,11 +311,26 @@ window.onLoadCallback = function(){
     dashToSpace()
 }
 
-function dashToSpace(){
+function dashToSpace(txt){
+  if(txt){
+    return txt.replaceAll("-"," ")
+  }
   var elems = document.getElementsByClassName("dashToSpace");
-    elems.forEach(element => {
-      element.innerHTML = element.innerHTML.replace("-"," ");
-    });
+    for(var i = 0 ; i < elems.length; i ++){
+      var element = elems[i];
+      element.innerHTML = element.innerHTML.replaceAll("-"," ");
+    }
+}
+
+function spaceToDash(txt){
+  if(txt){
+    return txt.replaceAll(" ","-")
+  }
+  var elems = document.getElementsByClassName("dashToSpace");
+    for(var i = 0 ; i < elems.length; i ++){
+      var element = elems[i];
+      element.innerHTML = element.innerHTML.replaceAll("-"," ");
+    }
 }
 </script>
 </body>
