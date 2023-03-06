@@ -308,9 +308,15 @@ window.onLoadCallback = function(){
   gapi.auth2.init({
       client_id: '{{data.Settings.gClientId}}'
     });
+    dashToSpace()
 }
 
-  
+function dashToSpace(){
+  var elems = document.getElementsByClassName("dashToSpace");
+    elems.forEach(element => {
+      element.innerHTML = element.innerHTML.replace("-"," ");
+    });
+}
 </script>
 </body>
 </html>

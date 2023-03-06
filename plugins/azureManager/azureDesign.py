@@ -11,7 +11,7 @@ def VMsBox():
     <div class="w3-container w3-third w3-padding">  
       <div class="w3-card-4 w3-button card">
       <i class="fas fa-server card-icon"></i>
-      <h2 style="text-transform:capitalize;" >'''+ vms[i]["name"] +'''</h2>
+      <h2 style="text-transform:capitalize;" class="dashToSpace" >'''+ vms[i]["name"] +'''</h2>
       <p>'''+'''</p>
           <div class="w3-container">
               <p><i class="fas fa-network-wired"></i> IP: '''+vms[i]["ip"]+'''</p>
