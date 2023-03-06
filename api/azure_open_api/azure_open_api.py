@@ -28,4 +28,4 @@ def getAllLocations():
     ret.append({
       "name":d["displayName"]
     })
-  return dict(ret)
+  return ret
