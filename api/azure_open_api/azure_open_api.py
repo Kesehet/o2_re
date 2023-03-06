@@ -29,7 +29,7 @@ def getAllLocations():
       "name":d["displayName"],
                   "name2":d["metadata"]["physicalLocation"],
                               "fullName":d["metadata"]["physicalLocation"]+", "+d["displayName"],
-                                          "lat":d["latitude"],
-                                                      "long":d["longitude"]
+                                          "lat":d["metadata"]["latitude"],
+                                                      "long":d["metadata"]["longitude"]
               })
   return ret
