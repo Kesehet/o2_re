@@ -326,7 +326,7 @@ function spaceToDash(txt){
   if(txt){
     return txt.replaceAll(" ","-")
   }
-  var elems = document.getElementsByClassName("dashToSpace");
+  var elems = document.getElementsByClassName("spaceToDash");
     for(var i = 0 ; i < elems.length; i ++){
       var element = elems[i];
       element.innerHTML = element.innerHTML.replaceAll("-"," ");
