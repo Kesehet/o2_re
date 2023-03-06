@@ -10,6 +10,7 @@ publicLinks = [
 
 import funcs.shell as SHELL
 import json 
+from random import randint
 def main(request):
   task = request.args.get("task")
   return tasks(task)
@@ -28,8 +29,8 @@ def getAllLocations():
     name = d["metadata"]["physicalLocation"] if d["metadata"]["physicalLocation"] != None else ""
     name2 = d["displayName"] if d["displayName"] != None else "" 
     fullName = name + ", "+ name2 if name2 != "" and name != "" else name
-    latitude = d["metadata"]["latitude"] if d["metadata"]["latitude"] != None and d["metadata"]["latitude"] != "null" else "0.0"
-    longitude = d["metadata"]["longitude"] if d["metadata"]["longitude"] != None and d["metadata"]["longitude"] != "null" else "0.0"
+    latitude = d["metadata"]["latitude"] if d["metadata"]["latitude"] != None and d["metadata"]["latitude"] != "null" else randint(1,100)
+    longitude = d["metadata"]["longitude"] if d["metadata"]["longitude"] != None and d["metadata"]["longitude"] != "null" else randint(1,100)
     ret.append({
       "name":name,
       "name2":name2,
