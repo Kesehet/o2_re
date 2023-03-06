@@ -9,7 +9,7 @@ def VMsBox():
   for i in range(len(vms)):
     ret = ret + '''
     <div class="w3-container w3-third w3-padding">  
-      <div class="w3-card-4 w3-button card">
+      <div class="w3-card-4 w3-hover-gray card">
       <i class="fas fa-server card-icon"></i>
       <h2 style="text-transform:capitalize;" class="dashToSpace" >'''+ vms[i]["name"] +'''</h2>
       <p>'''+'''</p>
@@ -24,7 +24,7 @@ def VMsBox():
 def createNewVMBox():
   return '''
       <div onclick="window.location.href = 'create_vm?step=1'" class="w3-container w3-third w3-padding">  
-      <div class="w3-card-4 w3-button card">
+      <div class="w3-card-4 w3-hover-gray card">
       <i class="fas fa-plus card-icon"></i>
       <h2 style="text-transform:capitalize;" >'''+ "Create New VM" +'''</h2>
       </div>
