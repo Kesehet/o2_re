@@ -25,7 +25,11 @@ def getAllLocations():
   ret = []
   dat  = json.loads(SHELL.run("sudo az account list-locations"))
   for d in dat:
-    ret.append({
-      "name":d["displayName"]
-    })
+    ret.append({      
+      "name":d["displayName"],
+                  "name2":d["metadata"]["physicalLocation"],
+                              "fullName":d["metadata"]["physicalLocation"]+", "d["displayName"],
+                                          "lat":d["latitude"],
+                                                      "long":d["longitude"]
+              })
   return ret
