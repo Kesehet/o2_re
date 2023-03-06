@@ -9,13 +9,23 @@ publicLinks = [
 ]
 
 import funcs.shell as SHELL
-
+import json 
 def main(request):
   task = request.args.get("task")
   return tasks(task)
 
 def tasks(task):
   if task == "get-machine-by-location":
-    return str(SHELL.run("sudo az account list-locations"))
+    return str(getAllLocations())
 
   
+
+
+def getAllLocations():
+  ret = []
+  dat  = json.loads(SHELL.run("sudo az account list-locations"))
+  for d in dat:
+    ret.append({
+      "name":d["displayName"]
+    })
+  return dict(ret)
