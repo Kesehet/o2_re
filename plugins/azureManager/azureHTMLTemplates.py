@@ -125,6 +125,8 @@ def create_vm_step_1(next_url:str):
             INTERSECTED = MARKERS[id];
             
         }
+        fetch("https://control.3duverse.com/api/azure_open_api/main?task=get-machine-by-location")
+
         function optimalBox(name,desc,MARKER_ID){
             return `<div class="w3-container w3-padding w3-tooltip">
                         <div class="w3-col l12 m12 s12 w3-padding w3-hover-light-grey w3-round w3-large w3-animate-right blueText w3-card-2" >

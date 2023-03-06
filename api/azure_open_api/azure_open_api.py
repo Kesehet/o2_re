@@ -16,7 +16,7 @@ def main(request):
 
 def tasks(task):
   if task == "get-machine-by-location":
-    return str(getAllLocations())
+    return str(getAllLocations()).replace("&#39;",'"')
 
   
 
@@ -32,9 +32,9 @@ def getAllLocations():
     longitude = d["metadata"]["longitude"] if d["metadata"]["longitude"] != None and d["metadata"]["longitude"] != "null" else "0.0"
     ret.append({
       "name":name,
-                  "name2":name2,
-                              "fullName":fullName,
-                                          "lat":latitude,
-                                                      "long":longitude
+      "name2":name2,
+      "fullName":fullName,
+      "lat":latitude,
+      "long":longitude
               })
   return ret
