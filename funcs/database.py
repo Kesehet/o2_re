@@ -45,7 +45,7 @@ def getTable(tableName:str):
 def createTable(tableName):
    tableName = str(urlencode(tableName)).lower()
    cmd = "/"+tableName
-   Log.writeLog("Database","Update","Table Creation Log \n"+fetch(cmd) + "\n"+cmd)
+   Log.writeLog("Database","Update","Table Creation Log \n"+str(fetch(cmd)) + "\n"+cmd)
 
 
 
