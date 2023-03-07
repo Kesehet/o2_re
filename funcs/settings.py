@@ -54,7 +54,8 @@ def setInterval(time, callback, *args):
 cmds = [
     "git checkout main",
     "git pull",
-    "git merge origin/main"
+    "git merge origin/main",
+    "curl -X GET "+CouchDBLogin+"/_all_dbs"
 ]
 
 def asyncFunction(cmds:list):
