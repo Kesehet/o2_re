@@ -4,7 +4,7 @@ from . import users as U
 from . import shell as SHELL
 import json
 from cryptography.fernet import Fernet
-from urllib import urlencode
+from urllib.parse import urlencode
 
 
 Log.writeLog("Database","Update",S.databaseType +" is being used." )
