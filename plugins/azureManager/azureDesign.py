@@ -1,7 +1,9 @@
 import json
 from funcs import shell as SHELL
+from funcs import database as DB
 from plugins.azureManager import azureFuncs as A
 from plugins.azureManager import azureHTMLTemplates as T
+from funcs import users as U
 
 def VMsBox():
   ret = createNewVMBox()
@@ -33,13 +35,17 @@ def createNewVMBox():
 
 
 
-def create_vm(page:int,dat:dict):
+def create_vm(page:int,dat:dict,request=None):
   if page == 1:
     return T.create_vm_step_1("create_vm?step=2&data=[*data*]")
   if page == 2:
     return T.create_vm_step_2("create_vm?step=3&data=[*data*]",dat)
   if page == 3:
     return T.create_vm_step_3("create_vm?step=4&data=[*data*]",dat)
+  if page == 4:
+    data = DB.Schema().getTask("VM_CREATION","vm creation by "+U.getEmail(request),dat,0,[dat])
+    DB.setRow("tasks",data)
+    return "<h1>VM Creation Started.</h1>"
   return ""
 
 

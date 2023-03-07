@@ -18,6 +18,9 @@ def canAccessPlugin(email,pluginAccessID):
   return 0
 
 
+def getEmail(request):
+   return L.isLoggedIn(request)[1]
+
 def getUserLevelFromRequest(request):
   email = L.isLoggedIn(request)[1]
   for user in getAllUsers():
@@ -37,16 +40,12 @@ def getUserFromRequest(request):
 def getDatabase(s):
     # Create a hash object using the SHA-256 algorithm
     hash_object = hashlib.sha256(s.encode('utf-8'))
-
     # Get the hex-encoded hash value as a string
     hex_hash = hash_object.hexdigest()
-
     # Convert the hex string to a base 36 integer
     base36_int = int(hex_hash, 16) % (36**10)
-
     # Convert the base 36 integer to a base 36 string
     base36_str = base36_int_to_base36_str(base36_int)
-
     return base36_str
 
 def base36_int_to_base36_str(i):

@@ -53,7 +53,7 @@ def create_vm(request):
     if data == "":
       return D.create_vm(1,{})
     data = urllib.parse.unquote(data)
-    return D.create_vm(pageNo,json.loads(data))  
+    return D.create_vm(pageNo,json.loads(data),request)  
   return D.create_vm(pageNo,{})
   
   

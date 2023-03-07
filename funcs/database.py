@@ -5,6 +5,7 @@ from . import shell as SHELL
 import json
 from cryptography.fernet import Fernet
 import requests
+import datetime
 
 Log.writeLog("Database","Update",S.databaseType +" is being used." )
 
@@ -22,7 +23,37 @@ def getUsers():
   return ret
 
 
+class Schema:
+  def __init__(self) -> None:
+      pass
+  def getTask(name:str,description:str,data:dict,status:int,task_list:list):
+     now = datetime.datetime.now()
+     created_at = now.timestamp()
+     updated_at = now.timestamp()
+     stat = [
+        {"name":"Not Started","description":" The task has been created, but work has not yet begun."},
+        {"name":"In Progress","description":" Work has started on the task, but it is not yet complete."},
+        {"name":"On Hold","description":" Work on the task has been temporarily paused or postponed."},
+        {"name":"Dependency Blocked","description":" The task is waiting for input, approval, or completion by someone else before it can proceed."},
+        {"name":"Completed","description":" The task has been finished and all necessary work has been done."},
+        {"name":"Cancelled","description":" The task has been cancelled and will not be completed."},
+        {"name":"Deferred","description":" The task has been delayed and will be completed at a later time."},
+        {"name":"Blocked","description":" The task is currently unable to proceed due to some obstacle or issue."},
+        {"name":"Urgent","description":" The task requires immediate attention and should be given priority over other tasks."},
+        {"name":"High Priority","description":" The task is important and should be completed before lower priority tasks."}
+     ]
+     return {
+        "name":name,
+        "description":description,
+        "data":data,
+        "status":stat[status],
+        "task_list":task_list,
+        "updated_at":updated_at,
+        "created_at":created_at
+     }
+  
 
+#______________________SET FUNCTIONS___________________________
 def getUserByName(name:str):
   cmd = "/users/_design/docs/_view/by_name?key=\""+urlencode(name)+"\""
   rows = json.loads(fetch(cmd))["rows"]
@@ -40,6 +71,12 @@ def getTable(tableName:str):
    shell_response = fetch(cmd)
    Log.writeLog("Database","Update","Get Table Response \n"+shell_response + "\n"+cmd)
    return json.loads(shell_response)
+
+#______________________SET FUNCTIONS___________________________
+
+def setRow(table:str,data:dict):
+  req = requests.put(S.CouchDBLoginURL+"/"+table,auth=S.CouchDBLoginAuth,json=data)
+  return str(req.json()).replace("'",'"')
 
 #______________________TEMP FUNCTIONS___________________________
 def createTable(tableName):
