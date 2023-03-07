@@ -17,7 +17,7 @@ def getUsers():
   ret = []
   for user in userMeta["rows"]:
     ret.append(json.loads(SHELL.execute(SHELL.cmdStringToList(
-      "curl -sS -X GET " + S.CouchDBLogin + "/users/"+user["id"] 
+      "curl -X GET " + S.CouchDBLogin + "/users/"+user["id"] 
     ))))
   return ret
 
@@ -31,13 +31,17 @@ def getUserByName(name:str):
 def getRowFromTable(rowID,Table):
    rowID = urlencode(rowID)
    Table = urlencode(Table)
-   return json.loads(SHELL.execute(SHELL.cmdStringToList(
-      "curl -sS -X GET " + S.CouchDBLogin + "/"+Table+"/"+rowID 
-    )))
+   shell_response = SHELL.execute(SHELL.cmdStringToList(
+      "curl -X GET " + S.CouchDBLogin + "/"+Table+"/"+rowID
+      ))
+   Log.writeLog("Database","Update","Get Table Response \n"+shell_response)
+   return json.loads(shell_response)
 
 def getTable(tableName:str):
-   cmd = "curl -sS -X GET "+S.CouchDBLogin+"/"+tableName+"/_all_docs"
-   return json.loads(SHELL.execute(SHELL.cmdStringToList(cmd)))
+   cmd = "curl -X GET "+S.CouchDBLogin+"/"+tableName+"/_all_docs"
+   shell_response = SHELL.execute(SHELL.cmdStringToList(cmd))
+   Log.writeLog("Database","Update","Get Table Response \n"+shell_response)
+   return json.loads(shell_response)
 
 #______________________TEMP FUNCTIONS___________________________
 def createTable(tableName):
