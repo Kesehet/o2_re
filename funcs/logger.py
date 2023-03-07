@@ -7,7 +7,7 @@ Log Types
 
 '''
 
-import settings as S
+from funcs import settings as S
 
 
 def writeLog(fileOrPlugin,logType,log):
