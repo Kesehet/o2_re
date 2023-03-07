@@ -34,20 +34,20 @@ def getRowFromTable(rowID,Table):
    shell_response = SHELL.execute(SHELL.cmdStringToList(
       "curl -X GET " + S.CouchDBLogin + "/"+Table+"/"+rowID
       ))
-   Log.writeLog("Database","Update","Get Table Response \n"+shell_response)
+   Log.writeLog("Database","Update","Get Table "+ Table +" Response \n"+shell_response)
    return json.loads(shell_response)
 
 def getTable(tableName:str):
    cmd = "curl -X GET "+S.CouchDBLogin+"/"+tableName+"/_all_docs"
    shell_response = SHELL.execute(SHELL.cmdStringToList(cmd))
-   Log.writeLog("Database","Update","Get Table Response \n"+shell_response)
+   Log.writeLog("Database","Update","Get Table Response \n"+shell_response + "\n"+cmd)
    return json.loads(shell_response)
 
 #______________________TEMP FUNCTIONS___________________________
 def createTable(tableName):
    tableName = str(urlencode(tableName)).lower()
-   cmd = "curl -u 'admin:6Jr9Z8L#k5F!@yxBM7%$S&KPcAfX3G2d' -X PUT "+S.CouchDBLogin+"/"+tableName
-   Log.writeLog("Database","Update","Table Creation Log \n"+SHELL.run(cmd))
+   cmd = "curl -X PUT "+S.CouchDBLogin+"/"+tableName
+   Log.writeLog("Database","Update","Table Creation Log \n"+SHELL.run(cmd) + "\n"+cmd)
 
 
 
