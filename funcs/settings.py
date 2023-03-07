@@ -34,7 +34,10 @@ favicon = "https://purelifi.com/wp-content/uploads/2018/10/O2-logo.png"
 
 CouchDBLogin =  '-H "Authorization: Basic YWRtaW46NkpyOVo4TCNrNUYhQHl4Qk03JSRTJktQY0FmWDNHMmQ=" -sS ' +CouchDBLoginURL
 
-
+logChannels=[
+#    "Updates",
+     "Error",
+]
 
 
 
