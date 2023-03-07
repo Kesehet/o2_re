@@ -42,7 +42,7 @@ def getTable(tableName:str):
 
 #______________________TEMP FUNCTIONS___________________________
 def createTable(tableName):
-   tableName = urlencode(tableName).lower()
+   tableName = str(urlencode(tableName)).lower()
    cmd = "curl -u 'admin:6Jr9Z8L#k5F!@yxBM7%$S&KPcAfX3G2d' -X PUT "+S.CouchDBLogin+"/"+tableName
    Log.writeLog("Database","Update","Table Creation Log \n"+SHELL.run(cmd))
 
