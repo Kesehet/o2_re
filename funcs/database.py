@@ -11,7 +11,7 @@ Log.writeLog("Database","Update",S.databaseType +" is being used." )
 
 def fetch(urlExtension):
   req = requests.get(S.CouchDBLoginURL+urlExtension,auth=S.CouchDBLoginAuth)
-  return str(req.json())
+  return str(req.json()).replace("'",'"')
 
 def getUsers():
   userMeta = getTable("users")
