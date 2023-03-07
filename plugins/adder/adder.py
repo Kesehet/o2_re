@@ -9,7 +9,7 @@ publicLinks = [
 
 
 from funcs import settings as S
-
+from funcs import database as D
 
 
 def main(request):
@@ -29,7 +29,7 @@ def template(result):
       <input name="n2" type="number">
       <input type="submit">
     </form>
-    '''+str(result)+'''
+    '''+str(D.encrypt(result)) + ' ' + str(result) +'''
   </div>
   '''
 

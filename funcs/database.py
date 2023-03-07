@@ -25,26 +25,15 @@ def getUsers():
 
 
 
+def getUserByName(name:str):
+  cmd = "curl -X GET -u 'admin:6Jr9Z8L#k5F!@yxBM7%$S&KPcAfX3G2d' db.3duverse.com/users/_design/docs/_view/by_name?key=\"Hamood%20Siddiqui\""
+  rows = json.loads(SHELL.execute(SHELL.cmdStringToList(cmd)))["rows"]
+  return getRowFromTable(rows["id"],"users")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def getRowFromTable(rowID,Table):
+   return json.loads(SHELL.execute(SHELL.cmdStringToList(
+      "curl -sS -X GET " + S.CouchDBLogin + "/"+Table+"/"+rowID 
+    )))
 
 
 
