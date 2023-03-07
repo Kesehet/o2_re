@@ -18,6 +18,7 @@ def main(request):
 def mresult(request):
   x = int(request.form.get("n1")) + int(request.form.get("n2"))
   ans = "<h1> Result: "+str(x)+"</h1>"
+  ans = ans + "<h2>" + str(D.encrypt(x)) + "</h2>"
   return template(ans)
 
 def template(result):
@@ -29,7 +30,7 @@ def template(result):
       <input name="n2" type="number">
       <input type="submit">
     </form>
-    '''+str(D.encrypt(result)) + ' ' + str(result) +'''
+    '''+str(result) +'''
   </div>
   '''
 
