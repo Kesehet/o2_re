@@ -16,7 +16,7 @@ Urls = {
   "edgeCertify":"/3duverse.com.pem",
   "edgeKey":"/3duverse.com.key"
   }
-
+CouchDBLoginURL = "db.3duverse.com"
 
 
 
@@ -32,7 +32,7 @@ invalidUserMessage = "You really shouldn't be here !"
 favicon = "https://purelifi.com/wp-content/uploads/2018/10/O2-logo.png"
 
 
-CouchDBLogin =  '-v -H "Authorization: Basic YWRtaW46NkpyOVo4TCNrNUYhQHl4Qk03JSRTJktQY0FmWDNHMmQ=" -sS ' +" db.3duverse.com"
+CouchDBLogin =  '-H "Authorization: Basic YWRtaW46NkpyOVo4TCNrNUYhQHl4Qk03JSRTJktQY0FmWDNHMmQ=" -sS ' +CouchDBLoginURL
 
 
 
