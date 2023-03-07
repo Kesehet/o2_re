@@ -52,7 +52,6 @@ def setInterval(time, callback, *args):
 
 
 cmds = [
-    "curl -X GET "+CouchDBLogin+"/_all_dbs"
 ]
 
 def asyncFunction(cmds:list):
