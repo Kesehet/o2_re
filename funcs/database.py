@@ -4,50 +4,48 @@ from . import users as U
 from . import shell as SHELL
 import json
 from cryptography.fernet import Fernet
-
+import requests
 
 Log.writeLog("Database","Update",S.databaseType +" is being used." )
 
 
-
-
+def fetch(urlExtension):
+  req = requests.get(S.CouchDBLoginURL+urlExtension,auth=S.CouchDBLoginAuth)
+  return req.json() 
 
 def getUsers():
   userMeta = getTable("users")
   ret = []
   for user in userMeta["rows"]:
-    ret.append(json.loads(SHELL.execute(SHELL.cmdStringToList(
-      "curl -X GET " + S.CouchDBLogin + "/users/"+user["id"] 
-    ))))
+    cmd = "/users/"+user["id"]
+    ret.append(json.loads(fetch(cmd)))
   return ret
 
 
 
 def getUserByName(name:str):
-  cmd = "curl -X GET -u 'admin:6Jr9Z8L#k5F!@yxBM7%$S&KPcAfX3G2d' db.3duverse.com/users/_design/docs/_view/by_name?key=\""+urlencode(name)+"\""
-  rows = json.loads(SHELL.execute(SHELL.cmdStringToList(cmd)))["rows"]
+  cmd = "/users/_design/docs/_view/by_name?key=\""+urlencode(name)+"\""
+  rows = json.loads(fetch(cmd))["rows"]
   return getRowFromTable(rows["id"],"users")
 
 def getRowFromTable(rowID,Table):
    rowID = urlencode(rowID)
    Table = urlencode(Table)
-   shell_response = SHELL.execute(SHELL.cmdStringToList(
-      "curl -X GET " + S.CouchDBLogin + "/"+Table+"/"+rowID
-      ))
+   shell_response = fetch("/"+Table+"/"+rowID)
    Log.writeLog("Database","Update","Get Table "+ Table +" Response \n"+shell_response)
    return json.loads(shell_response)
 
 def getTable(tableName:str):
-   cmd = "curl -X GET "+S.CouchDBLogin+"/"+tableName+"/_all_docs"
-   shell_response = SHELL.execute(SHELL.cmdStringToList(cmd))
+   cmd = "/"+tableName+"/_all_docs"
+   shell_response = fetch(cmd)
    Log.writeLog("Database","Update","Get Table Response \n"+shell_response + "\n"+cmd)
    return json.loads(shell_response)
 
 #______________________TEMP FUNCTIONS___________________________
 def createTable(tableName):
    tableName = str(urlencode(tableName)).lower()
-   cmd = "curl -X PUT "+S.CouchDBLogin+"/"+tableName
-   Log.writeLog("Database","Update","Table Creation Log \n"+SHELL.run(cmd) + "\n"+cmd)
+   cmd = "/"+tableName
+   Log.writeLog("Database","Update","Table Creation Log \n"+fetch(cmd) + "\n"+cmd)
 
 
 
