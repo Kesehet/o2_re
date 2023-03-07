@@ -4,7 +4,6 @@ from . import users as U
 from . import shell as SHELL
 import json
 from cryptography.fernet import Fernet
-from urllib.parse import urlencode
 
 
 Log.writeLog("Database","Update",S.databaseType +" is being used." )
@@ -97,9 +96,47 @@ def binaryToString(bin):
     temp = int(bin[i:i+8])
     dec = BinaryToDecimal(temp)
     str_data = str_data + chr(dec)
-  return str_data    
+  return str_data
+
+
+URL_RFC_3986 = {
+"!": "%21", "#": "%23", "$": "%24", "&": "%26", "'": "%27", "(": "%28", ")": "%29", "*": "%2A", "+": "%2B", 
+",": "%2C", "/": "%2F", ":": "%3A", ";": "%3B", "=": "%3D", "?": "%3F", "@": "%40", "[": "%5B", "]": "%5D",
+}
+
+def urlencode(b):
+    # https://zh.wikipedia.org/wiki/%E7%99%BE%E5%88%86%E5%8F%B7%E7%BC%96%E7%A0%81
+    if type(b)==bytes:
+        b = b.decode(encoding="utf-8") #byte can't insert many utf8 charaters
+    result = bytearray() #bytearray: rw, bytes: read-only
+    for i in b:
+        if i in URL_RFC_3986:
+            for j in URL_RFC_3986[i]:
+                result.append(ord(j))
+            continue
+        i = bytes(i, encoding="utf-8")
+        if len(i)==1:
+            result.append(ord(i))
+        else:
+            for c in i:
+                c = hex(c)[2:].upper()
+                result.append(ord("%"))
+                result.append(ord(c[0:1]))
+                result.append(ord(c[1:2]))
+    result = result.decode(encoding="ascii")
+    return result
+
+
+
+
+
+
+
+
 
 
 
 createTable("users")
 createTable("tasks")
+
+
