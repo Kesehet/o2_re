@@ -32,7 +32,7 @@ invalidUserMessage = "You really shouldn't be here !"
 favicon = "https://purelifi.com/wp-content/uploads/2018/10/O2-logo.png"
 
 
-CouchDBLogin = "admin:6Jr9Z8L%23k5F!%40yxBM7%25%24S%26KPcAfX3G2d@db.3duverse.com"
+CouchDBLogin = "-u 'admin:6Jr9Z8L#k5F!@yxBM7%$S&KPcAfX3G2d' db.3duverse.com"
 
 
 

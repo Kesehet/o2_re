@@ -105,7 +105,6 @@ URL_RFC_3986 = {
 }
 
 def urlencode(b):
-    # https://zh.wikipedia.org/wiki/%E7%99%BE%E5%88%86%E5%8F%B7%E7%BC%96%E7%A0%81
     if type(b)==bytes:
         b = b.decode(encoding="utf-8") #byte can't insert many utf8 charaters
     result = bytearray() #bytearray: rw, bytes: read-only
