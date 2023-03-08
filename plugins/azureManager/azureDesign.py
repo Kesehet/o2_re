@@ -33,6 +33,8 @@ def createNewVMBox():
     </div>
   '''
 
+def create_step_3_group_box(opt):
+  return '''<a href="#" class="w3-bar-item w3-button w3-round-xxlarge grey" onclick="document.getElementById('group_box').innerText = \''''+opt+'''\'; ">'''+opt+'''</a>'''
 
 
 def create_vm(page:int,dat:dict,request=None):
@@ -41,7 +43,11 @@ def create_vm(page:int,dat:dict,request=None):
   if page == 2:
     return T.create_vm_step_2("create_vm?step=3&data=[*data*]",dat)
   if page == 3:
-    return T.create_vm_step_3("create_vm?step=4&data=[*data*]",dat)
+    group_list = ["group 1" , "group 2"]
+    glist = ""
+    for g in group_list:
+      glist = glist + create_step_3_group_box(g)
+    return T.create_vm_step_3("create_vm?step=4&data=[*data*]",dat,glist)
   if page == 4:
     data = DB.Schema().getTask(
       "VM_CREATION",

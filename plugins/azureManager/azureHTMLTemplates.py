@@ -451,10 +451,20 @@ def create_vm_step_2(next_url:str,data:dict):
     </script>
     '''
 
-def create_vm_step_3(next_url:str,data:dict):
+def create_vm_step_3(next_url:str,data:dict,group_list = ""):
     return '''
     <div class="w3-container w3-animate-opacity publicSans" >
-    
+    <script>
+    var DATA = '''+data+''';
+    document.getElementById("next").addEventListener("click", function() {
+        DATA["vm_name"] = document.getElementById("vm_name").value;
+        DATA["group"] = document.getElementById("group_box").innerHTML;
+        if(DATA.vm_name != undefined && DATA.group != "Select"){
+            var next_url = "'''+next_url+'''".replace("[*data*]",JSON.stringify(DATA));
+            window.location.href = next_url;
+        }
+    });
+    </script>
         
             <div class="w3-display-container" style="height: 80vh;">
                 <div class="w3-display-topleft w3-padding-large">
@@ -463,17 +473,15 @@ def create_vm_step_3(next_url:str,data:dict):
                 <div class="w3-display-middle">
                     <p>
                         <b class="w3-padding bolder">Give it a Name</b>
-                        <input type="text" class="w3-border w3-boder-white w3-round-xxlarge grey w3-padding">
+                        <input id="vm_name" type="text" class="w3-border w3-boder-white w3-round-xxlarge grey w3-padding">
                     </p>
 
                     <div class="w3-container">
                         <div class=" w3-half" style="padding-top: 8px;" >Assign a group</div>
                         <div class="w3-dropdown-hover w3-round-xxlarge w3-half" style="" >
-                            <div class="w3-button w3-round-xxlarge grey">Groups <i class="fas fa-chevron-down"></i>  </div>
+                            <div class="w3-button w3-round-xxlarge grey"><b id="group_box" >Select</b> <i class="fas fa-chevron-down"></i>  </div>
                             <div class="w3-dropdown-content  w3-bar-block ">
-                                <a href="#" class="w3-bar-item w3-button w3-round-xxlarge grey">Link 1</a>
-                                <a href="#" class="w3-bar-item w3-button w3-round-xxlarge grey">Link 2</a>
-                                <a href="#" class="w3-bar-item w3-button w3-round-xxlarge grey">Link 3</a>
+                                '''+ group_list +'''
                             </div>
                         </div>
                     </div> 
