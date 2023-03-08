@@ -18,7 +18,8 @@ def getUsers():
   userMeta = getTable("users")
   ret = []
   for user in userMeta["rows"]:
-    ret.append(getRowFromTable(user[id],"users"))
+    if not user["id"].startswith("_design"):
+      ret.append(getRowFromTable(user[id],"users"))
   return ret
 
 
