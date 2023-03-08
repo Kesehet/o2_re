@@ -79,13 +79,13 @@ def getRowFromTable(rowID,Table):
    rowID = urlencode(rowID)
    Table = urlencode(Table)
    shell_response = fetch("/"+Table+"/"+rowID)
-   Log.writeLog("Database","Update","Get Table "+ Table +" Response \n"+shell_response)
+   Log.writeLog("Database","Update","Get Row from table -> "+ Table +" Response \n"+shell_response)
    return json.loads(shell_response)
 
 def getTable(tableName:str):
    cmd = "/"+tableName+"/_all_docs"
    shell_response = fetch(cmd)
-   Log.writeLog("Database","Update","Get Table Response \n"+shell_response + "\n"+cmd)
+   Log.writeLog("Database","Update","Get Table Response -> "+ tableName+" \n"+shell_response + "\n"+cmd)
    return json.loads(shell_response)
 
 #______________________SET FUNCTIONS___________________________
