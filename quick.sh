@@ -1,7 +1,4 @@
-
-git checkout main
 git pull
-git merge origin/main
 
 
 

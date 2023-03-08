@@ -471,7 +471,7 @@ def create_vm_step_3(next_url:str,data:dict,group_list = ""):
                         <div class="w3-dropdown-hover w3-round-xxlarge w3-half" style="" >
                             <div class="w3-button w3-round-xxlarge grey"><b id="group_box" >Select</b> <i class="fas fa-chevron-down"></i>  </div>
                             <div class="w3-dropdown-content  w3-bar-block ">
-                                '''+ group_list +'''
+                                '''+ str(group_list) +'''
                             </div>
                         </div>
                     </div> 
@@ -487,7 +487,7 @@ def create_vm_step_3(next_url:str,data:dict,group_list = ""):
             DATA["vm_name"] = document.getElementById("vm_name").value;
             DATA["group"] = document.getElementById("group_box").innerHTML;
             if(DATA.vm_name != undefined && DATA.group != "Select"){
-                var next_url = "'''+next_url+'''".replace("[*data*]",JSON.stringify(DATA));
+                var next_url = "'''+str(next_url)+'''".replace("[*data*]",JSON.stringify(DATA));
                 window.location.href = next_url;
             }
         });
