@@ -497,8 +497,7 @@ def create_vm_step_4(next_url:str,tasks):
     task_list = '''<table class="w3-table w3-striped" >'''
     for task in tasks:
         task_list = task_list + ''' 
-        <tr> <td>
-        ''' + task["_id"] + "</td></tr>"
+        <tr> <td>''' + task["_id"] + "</td><td>"+task["name"]+"</td><td>"+task["status"]["name"]+"</td></tr>"
     task_list = task_list + "</table>"
     return '''<h1>VM Creation Started.</h1><div class='w3-container'>
     '''+task_list+"</div>"+'''
