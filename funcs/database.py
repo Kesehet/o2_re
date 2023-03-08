@@ -26,7 +26,14 @@ def getUsers():
 class Schema:
   def __init__(self) -> None:
       pass
-  def getTask(name:str,description:str,data:dict,status:int,task_list:list):
+  def getTask(
+        param,
+        name:str,
+        description:str,
+        data:dict,
+        status:int,
+        task_list:list
+        ):
      now = datetime.datetime.now()
      created_at = now.timestamp()
      updated_at = now.timestamp()
