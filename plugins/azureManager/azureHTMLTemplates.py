@@ -324,6 +324,7 @@ def create_vm_step_1(next_url:str):
     '''
 
 def create_vm_step_2(next_url:str,data:dict):
+    data["descr"] = ""
     return '''
 <div class="w3-container w3-animate-opacity publicSans w3-padding-large" style="overflow-x: hidden;">
     <div class="w3-container w3-padding">
