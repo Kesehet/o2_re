@@ -451,20 +451,10 @@ def create_vm_step_2(next_url:str,data:dict):
     </script>
     '''
 
-def create_vm_step_3(next_url:str,data:dict,group_list = ""):
+def create_vm_step_3(next_url:str,data:dict,group_list = "":str):
     return '''
     <div class="w3-container w3-animate-opacity publicSans" >
-    <script>
-    var DATA = '''+str(data)+''';
-    document.getElementById("next").addEventListener("click", function() {
-        DATA["vm_name"] = document.getElementById("vm_name").value;
-        DATA["group"] = document.getElementById("group_box").innerHTML;
-        if(DATA.vm_name != undefined && DATA.group != "Select"){
-            var next_url = "'''+next_url+'''".replace("[*data*]",JSON.stringify(DATA));
-            window.location.href = next_url;
-        }
-    });
-    </script>
+
         
             <div class="w3-display-container" style="height: 80vh;">
                 <div class="w3-display-topleft w3-padding-large">
@@ -491,4 +481,15 @@ def create_vm_step_3(next_url:str,data:dict,group_list = ""):
                 </div>
             </div> 
     </div>
+    <script>
+        var DATA = '''+str(data)+''';
+        document.getElementById("next").addEventListener("click", function() {
+            DATA["vm_name"] = document.getElementById("vm_name").value;
+            DATA["group"] = document.getElementById("group_box").innerHTML;
+            if(DATA.vm_name != undefined && DATA.group != "Select"){
+                var next_url = "'''+next_url+'''".replace("[*data*]",JSON.stringify(DATA));
+                window.location.href = next_url;
+            }
+        });
+    </script>
     '''
