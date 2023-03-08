@@ -6,7 +6,7 @@ import hashlib
 Users = DB.getUsers()
 
 def getAllUsers():
-  return DB.getUsers()
+  return Users
 
 
 def canAccessPlugin(email,pluginAccessID):
@@ -30,7 +30,7 @@ def getUserLevelFromRequest(request):
 
 def getUserFromRequest(request):
   email = L.isLoggedIn(request)[1]
-  for user in getAllUsers():
+  for user in DB.getUserByEmail(email):
     if email == user["email"]:
       user["databaseName"] = getDatabase(user["email"])
       return user

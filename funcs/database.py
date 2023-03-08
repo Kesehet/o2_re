@@ -75,6 +75,12 @@ def getUserByName(name:str):
   rows = json.loads(fetch(cmd))["rows"]
   return getRowFromTable(rows["id"],"users")
 
+def getUserByEmail(name:str):
+  cmd = "/users/_design/docs/_view/by_email?key=\""+urlencode(name)+"\""
+  rows = json.loads(fetch(cmd))["rows"]
+  return getRowFromTable(rows["id"],"users")
+
+
 def getRowFromTable(rowID,Table):
    rowID = urlencode(rowID)
    Table = urlencode(Table)
