@@ -91,8 +91,9 @@ def getTable(tableName:str):
 #______________________SET FUNCTIONS___________________________
 
 def setRow(table:str,data:dict):
-  req = requests.post(S.CouchDBLoginURL+"/"+table,auth=S.CouchDBLoginAuth,json=data)
-  Log.writeLog("Database","Error",str(req.json()))
+  cmd = S.CouchDBLoginURL+"/"+table
+  req = requests.post(cmd,auth=S.CouchDBLoginAuth,json=data)
+  Log.writeLog("Database","Error", "Pinged "+cmd + " \n Response \n" str(req.json()))
   return str(req.json()).replace("'",'"')
 
 #______________________TEMP FUNCTIONS___________________________
