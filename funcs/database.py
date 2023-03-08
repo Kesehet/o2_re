@@ -92,6 +92,7 @@ def getTable(tableName:str):
 
 def setRow(table:str,data:dict):
   req = requests.put(S.CouchDBLoginURL+"/"+table,auth=S.CouchDBLoginAuth,json=data)
+  Log.writeLog("Database","Error",str(req.json()))
   return str(req.json()).replace("'",'"')
 
 #______________________TEMP FUNCTIONS___________________________
