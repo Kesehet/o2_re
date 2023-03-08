@@ -23,6 +23,15 @@ def getUsers():
   return ret
 
 
+def getTasks():
+  userMeta = getTable("tasks")
+  ret = []
+  for user in userMeta["rows"]:
+    cmd = "/tasks/"+user["id"]
+    ret.append(json.loads(fetch(cmd)))
+  return ret
+
+
 class Schema:
   def __init__(self) -> None:
       pass
@@ -60,7 +69,7 @@ class Schema:
      }
   
 
-#______________________SET FUNCTIONS___________________________
+#______________________GET FUNCTIONS___________________________
 def getUserByName(name:str):
   cmd = "/users/_design/docs/_view/by_name?key=\""+urlencode(name)+"\""
   rows = json.loads(fetch(cmd))["rows"]

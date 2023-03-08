@@ -51,7 +51,8 @@ def create_vm(page:int,dat:dict,request=None):
       [dat]
       )
     DB.setRow("tasks",data)
-    return "<h1>VM Creation Started.</h1>"
+
+    return "<h1>VM Creation Started.</h1><pre>"+DB.getTasks()+"</pre>"
   return ""
 
 
