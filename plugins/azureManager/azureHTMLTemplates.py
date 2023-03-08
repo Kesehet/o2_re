@@ -455,7 +455,7 @@ def create_vm_step_3(next_url:str,data:dict,group_list = ""):
     return '''
     <div class="w3-container w3-animate-opacity publicSans" >
     <script>
-    var DATA = '''+data+''';
+    var DATA = '''+str(data)+''';
     document.getElementById("next").addEventListener("click", function() {
         DATA["vm_name"] = document.getElementById("vm_name").value;
         DATA["group"] = document.getElementById("group_box").innerHTML;
