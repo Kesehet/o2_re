@@ -191,8 +191,3 @@ def urlencode(b):
 
 
 
-
-createTable("users")
-createTable("tasks")
-
-
