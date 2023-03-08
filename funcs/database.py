@@ -18,8 +18,7 @@ def getUsers():
   userMeta = getTable("users")
   ret = []
   for user in userMeta["rows"]:
-    cmd = "/users/"+user["id"]
-    ret.append(json.loads(fetch(cmd)))
+    ret.append(getRowFromTable(user[id],"users"))
   return ret
 
 
