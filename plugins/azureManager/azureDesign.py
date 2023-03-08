@@ -58,7 +58,7 @@ def create_vm(page:int,dat:dict,request=None):
       )
     DB.setRow("tasks",data)
 
-    return "<h1>VM Creation Started.</h1><div class='w3-container'>"+str(DB.getTasks())+"</div>"
+    return T.create_vm_step_4("main",DB.getTasks())
   return ""
 
 
