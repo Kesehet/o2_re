@@ -47,7 +47,7 @@ def create_vm(page:int,dat:dict,request=None):
     glist = ""
     for g in group_list:
       glist = glist + create_step_3_group_box(g)
-    return T.create_vm_step_3("create_vm?step=4&data=",dat,glist)
+    return T.create_vm_step_3("create_vm?step=4&data=[*data*]",dat,glist)
   if page == 4:
     data = DB.Schema().getTask(
       "VM_CREATION",
