@@ -91,7 +91,7 @@ def getTable(tableName:str):
 #______________________SET FUNCTIONS___________________________
 
 def setRow(table:str,data:dict):
-  req = requests.put(S.CouchDBLoginURL+"/"+table,auth=S.CouchDBLoginAuth,json=data)
+  req = requests.post(S.CouchDBLoginURL+"/"+table,auth=S.CouchDBLoginAuth,json=data)
   Log.writeLog("Database","Error",str(req.json()))
   return str(req.json()).replace("'",'"')
 
