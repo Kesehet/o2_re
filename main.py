@@ -47,8 +47,9 @@ def login_check():
       "pre":"<script>window.location.href='",
          "post":"';</script>"
   }
-  if L.checkGoogleLoginToken(token)[0]:
-    if U.canAccessPlugin(L.checkGoogleLoginToken(token)[1],0):
+  login_details = L.checkGoogleLoginToken(token)
+  if login_details[0]:
+    if U.canAccessPlugin(login_details[1],0):
       resp = make_response(redirectStr["pre"]+S.Urls["dashboard"]+redirectStr["post"])
       resp.set_cookie('userID', L.encrypt(token))
       print(resp)
@@ -56,7 +57,7 @@ def login_check():
     else:
       return "/"
   else:
-    return S.Urls["login"]
+    return token + " " + S.Urls["login"]
 
 @app.route(S.Urls["google_logout_check"],methods=["GET","POST"])
 def logout_check():
