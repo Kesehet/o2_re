@@ -28,7 +28,7 @@ def template(result):
       "<b>Name:</b> "+stat["name"],
       "<b>Description:</b> "+str(stat["description"])
     ],
-    stat["name"].replace(" " + "-")
+    stat["name"].replace(" ", "-")
     )
 
   return '''
