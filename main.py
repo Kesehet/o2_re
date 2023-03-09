@@ -58,7 +58,7 @@ def login_check():
   else:
     return S.Urls["login"]
 
-@app.route(S.Urls["google_logout_check"],methods=["POST"])
+@app.route(S.Urls["google_logout_check"],methods=["GET","POST"])
 def logout_check():
   L.LogOut(request)
   resp = make_response(S.Urls["login"])
