@@ -99,9 +99,7 @@ def getTasksByUserEmail(email:str):
   tasks = getSearch("tasks","search","by_user_email",email)
   for task in tasks:
      ret.append(
-        json.loads(
           task["value"]
-          )
         )
   return ret
 
