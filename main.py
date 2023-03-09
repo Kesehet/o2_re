@@ -133,6 +133,7 @@ def plugins(name,functionCall):
       "pluginLinks":P.getAllHomeLinks(login[1]),
       "pageTitle": name,
       "name":login[2],
+      "display_picture":login[3]
       })
   except Exception as e:
     Log.writeLog("Main","Error",e)
