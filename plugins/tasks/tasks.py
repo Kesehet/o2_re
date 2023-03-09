@@ -23,12 +23,20 @@ def template(result):
 
   boxes = ""
   for b in result:
+    stat = b["status"]
     boxes = boxes + box(str(b["name"]),[
-      "<b>Name:</b>"+str(b["status"]["name"]),
-      "<b>Description:</b>"+str(b["status"]["description"])
-    ])
+      "<b>Name:</b> "+stat["name"],
+      "<b>Description:</b> "+str(stat["description"])
+    ],
+    stat["name"].replace(" " + "-")
+    )
 
   return '''
+  <style>
+    .Not-Started{
+      background-color: red;
+    }
+  </style>
   <div class="w3-container">
 		<h2>Task List</h2>
 		<div class="w3-row">
@@ -38,14 +46,15 @@ def template(result):
 		</div>
 	</div>
   '''
-def box(name:str,properties:list):
+def box(name:str,properties:list,status:str):
   lst = ""
   for prop in properties:
     lst = lst + "<p>"+prop+"</p>"
+
   return '''
       <div class="w3-col s12 m6 l4">
 				<div class="w3-card">
-					<div class="w3-container w3-green ">
+					<div class="w3-container '''+status+''' ">
 						<h3>''' + name + '''</h3>
 					</div>
 					<div class="w3-container">
