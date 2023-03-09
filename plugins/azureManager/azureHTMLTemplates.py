@@ -494,13 +494,11 @@ def create_vm_step_3(next_url:str,data:dict,group_list = ""):
         });
     </script>
     '''
-def create_vm_step_4(next_url:str,tasks):
-    task_list = '''<table class="w3-table w3-striped" >'''
-    for task in tasks:
-        task_list = task_list + ''' 
-        <tr> <td>''' + str(task["_id"]) + "</td><td>"+ str(task["name"])+"</td><td>"+ str(task["status"]["name"])+"</td></tr>"
-    task_list = task_list + "</table>"
-    return '''<h1>VM Creation Started.</h1><div class='w3-container'>
-    '''+task_list+"</div>"+'''
-
+def create_vm_step_4(next_url:str):
+    
+    
+    return '''<h1>VM Creation Started.</h1>
+    <script>
+        window.location.href = "'''+next_url+'''";
+    </script>
     '''

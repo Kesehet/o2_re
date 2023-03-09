@@ -4,6 +4,7 @@ from funcs import database as DB
 from plugins.azureManager import azureFuncs as A
 from plugins.azureManager import azureHTMLTemplates as T
 from funcs import users as U
+from funcs import settings as S
 
 def VMsBox():
   ret = createNewVMBox()
@@ -58,8 +59,8 @@ def create_vm(page:int,dat:dict,request=None):
       request
       )
     DB.setRow("tasks",data)
-
-    return T.create_vm_step_4("main",DB.getTasks())
+    next_url_is = S.Urls["plugin"].replace("<name>","tasks").replace("<functionCall>","main")
+    return T.create_vm_step_4(next_url_is)
   return ""
 
 

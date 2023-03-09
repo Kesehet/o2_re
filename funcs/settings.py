@@ -4,7 +4,7 @@ from funcs import shell as SHELL
 
 IP = '0.0.0.0'
 PORT = 80
-PRODUCTION = True
+PRODUCTION = False
 
 
 Urls = {
