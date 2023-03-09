@@ -15,6 +15,12 @@ def fetch(urlExtension):
   req = requests.get(S.CouchDBLoginURL+urlExtension,auth=S.CouchDBLoginAuth)
   return str(req.json()).replace("'",'"')
 
+def getSearch(table:str,_designVal:str,searchBy:str,query:str):
+   query = urlencode(query)
+   cmd = "/"+table+"/_design/"+_designVal+"/_view/"+searchBy+"?key=\""+query+"\""
+   return getRowFromTable(json.loads(fetch(cmd))["rows"],table)
+
+
 def getUsers():
   userMeta = getTable("users")
   ret = []
@@ -86,6 +92,9 @@ def getUserByEmail(name:str):
   cmd = "/users/_design/docs/_view/by_email?key=\""+urlencode(name)+"\""
   rows = json.loads(fetch(cmd))["rows"]
   return getRowFromTable(rows["id"],"users")
+
+def getTasksByUserEmail(email:str):
+  return getSearch("tasks","search","by_email",email)
 
 
 def getRowFromTable(rowID,Table):
