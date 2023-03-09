@@ -6,6 +6,7 @@ import json
 from cryptography.fernet import Fernet
 import requests
 import datetime
+from . import login as L
 
 Log.writeLog("Database","Update",S.databaseType +" is being used." )
 
@@ -41,7 +42,8 @@ class Schema:
         description:str,
         data:dict,
         status:int,
-        task_list:list
+        task_list:list,
+        request
         ):
      now = datetime.datetime.now()
      created_at = now.timestamp()
@@ -58,12 +60,17 @@ class Schema:
         {"name":"Urgent","description":" The task requires immediate attention and should be given priority over other tasks."},
         {"name":"High Priority","description":" The task is important and should be completed before lower priority tasks."}
      ]
+     login_deatils = L.isLoggedIn(request)
+     if login_deatils[0] == 0:
+        return {}
+     
      return {
         "name":name,
         "description":description,
         "data":data,
         "status":stat[status],
         "task_list":task_list,
+        "created_by":login_deatils,
         "updated_at":updated_at,
         "created_at":created_at
      }
