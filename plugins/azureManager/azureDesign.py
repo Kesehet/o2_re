@@ -50,7 +50,13 @@ def create_vm(page:int,dat:dict,request=None):
       glist = glist + create_step_3_group_box(g)
     return T.create_vm_step_3("create_vm?step=4&data=[*data*]",dat,glist)
   if page == 4:
-    dat["vm_name"] = dat["vm_name"].lower().replace(" ","-")
+    dat["vm_name"] = cleanStrForSave(dat["vm_name"])
+    dat["tier"] = cleanStrForSave(dat["tier"])
+    dat["group"] = cleanStrForSave(dat["group"])
+    dat["descr"] = cleanStrForSave(dat["descr"])
+    dat["desc"] = cleanStrForSave(dat["desc"])
+    dat["cityName"] = cleanStrForSave(dat["cityName"])
+    dat["place"] = cleanStrForSave(dat["place"])
     data = DB.Schema().getTask(
       "VM_CREATION",
       "The VM Creation has been requested for "+dat["vm_name"],
@@ -64,6 +70,10 @@ def create_vm(page:int,dat:dict,request=None):
     return T.create_vm_step_4(next_url_is)
   return ""
 
+def cleanStrForSave(string:str):
+  string = "".join(ch for ch in string if ch.isalnum())
+  string = string.lower().replace(" ","-")
+  return string
 
 def css():
   return '''
