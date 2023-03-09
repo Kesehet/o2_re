@@ -20,7 +20,7 @@ def theDashboardHomePage(email,name,dp):
       "Settings":S,
       "name": "Anonymous" if name=="" else name,
       "pluginLinks":P.getAllHomeLinks(email),
-      "dp":dp,
+      "display_picture":dp,
       "pluginHTML":'''
         <div class="w3-container">
           <h1>Welcome To The O2</h1>
