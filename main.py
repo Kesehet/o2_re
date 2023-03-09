@@ -55,9 +55,9 @@ def login_check():
       print(resp)
       return resp
     else:
-      return "/"
+      return "Error: You are not authorized to access this database. Please contact the administrator to request access or verify that your account has been properly registered."+redirectStr["pre"]+S.Urls["base"]+redirectStr["post"]
   else:
-    return token + " " + S.Urls["login"]
+    return "Error: You must be logged in to perform this action. Please log in using your Google account and try again."+redirectStr["pre"]+S.Urls["base"]+redirectStr["post"]
 
 @app.route(S.Urls["google_logout_check"],methods=["GET","POST"])
 def logout_check():
