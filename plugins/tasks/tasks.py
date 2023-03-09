@@ -14,7 +14,7 @@ def main(request):
   
   resp = DB.getTasksByUserEmail(email)
 
-  return template(str(resp))
+  return template(resp)
 
 
 
