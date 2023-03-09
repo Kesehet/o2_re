@@ -464,7 +464,7 @@ def create_vm_step_3(next_url:str,data:dict,group_list = ""):
                 <div class="w3-display-middle">
                     <p>
                         <b class="w3-padding bolder">Give it a Name</b>
-                        <input id="vm_name" type="text" class="w3-border w3-boder-white w3-round-xxlarge grey w3-padding">
+                        <input id="vm_name" maxlength="25" type="text" class="w3-border w3-boder-white w3-round-xxlarge grey w3-padding">
                     </p>
 
                     <div class="w3-container">

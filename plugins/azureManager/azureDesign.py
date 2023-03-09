@@ -50,7 +50,7 @@ def create_vm(page:int,dat:dict,request=None):
       glist = glist + create_step_3_group_box(g)
     return T.create_vm_step_3("create_vm?step=4&data=[*data*]",dat,glist)
   if page == 4:
-    dat["vm_name"] = cleanStrForSave(dat["vm_name"])
+    dat["vm_name"] = cleanStrForSave(dat["vm_name"],25)
     dat["tier"] = cleanStrForSave(dat["tier"])
     dat["group"] = cleanStrForSave(dat["group"])
     dat["descr"] = cleanStrForSave(dat["descr"])
@@ -70,10 +70,12 @@ def create_vm(page:int,dat:dict,request=None):
     return T.create_vm_step_4(next_url_is)
   return ""
 
-def cleanStrForSave(string:str):
+def cleanStrForSave(string:str,truncate=-1):
   string = "".join(ch for ch in string if ch.isalnum() or ch == " " or ch == "-" or ch == "_")
   string = string.lower().replace(" ","-")
   string = string.replace("--","-").replace("__","_")
+  if truncate != -1:
+    string = string[0:truncate]
   return string
 
 def css():
