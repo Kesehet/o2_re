@@ -16,7 +16,6 @@ def the404page(email,redirect=False):
 
 
 def theDashboardHomePage(email,name,display_picture="/static/img/temp_dp.png"):
-  print("URL = " + display_picture)
   return render_template("dashboard.html",data = {
       "Settings":S,
       "name": "Cloud Legend" if name=="" else name,

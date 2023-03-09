@@ -36,12 +36,4 @@ def setCommandParams(params:dict,cmd:str):
         cmd = cmd.replace(preFix+keys[i]+postFix,vals[i])
     return cmd
 
-# commands = []
-# cmd = "curl -sS -X GET "+S.CouchDBLogin+"/cmds/_all_docs"
-# cmds = str(run(cmd))
-# userMeta = json.loads(cmds)
-# for user in userMeta["rows"]:
-#     commands.append(json.loads(run(
-#     "curl -sS -X GET " + S.CouchDBLogin + "/cmds/"+user["id"]
-#     )))
-# #print(commands)
+

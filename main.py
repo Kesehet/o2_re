@@ -52,7 +52,6 @@ def login_check():
     if U.canAccessPlugin(login_details[1],0):
       resp = make_response(redirectStr["pre"]+S.Urls["dashboard"]+redirectStr["post"])
       resp.set_cookie('userID', L.encrypt(token))
-      print(resp)
       return resp
     else:
       return "Error: You are not authorized to access this database. Please contact the administrator to request access or verify that your account has been properly registered."+redirectStr["pre"]+S.Urls["base"]+redirectStr["post"]
@@ -70,7 +69,6 @@ def logout_check():
 def dashboard():
   login = L.isLoggedIn(request)
   if login[0]:
-    print(login[2])
     return UT.theDashboardHomePage(login[1],login[2],login[3])
   else:
     return UT.the404page(login[1])
@@ -132,7 +130,7 @@ def plugins(name,functionCall):
       "pluginHTML":pluginReturnHTML,
       "pluginLinks":P.getAllHomeLinks(login[1]),
       "pageTitle": name,
-      "name":login[2],
+      "name":"Cloud Legend" if login[2]=="" else login[2],
       "display_picture":login[3]
       })
   except Exception as e:
