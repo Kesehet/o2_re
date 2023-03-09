@@ -15,12 +15,12 @@ def the404page(email,redirect=False):
       })
 
 
-def theDashboardHomePage(email,name,dp):
+def theDashboardHomePage(email,name,display_picture="/static/img/temp_dp.png"):
   return render_template("dashboard.html",data = {
       "Settings":S,
-      "name": "Anonymous" if name=="" else name,
+      "name": "Cloud Legend" if name=="" else name,
       "pluginLinks":P.getAllHomeLinks(email),
-      "display_picture":dp,
+      "display_picture":display_picture,
       "pluginHTML":'''
         <div class="w3-container">
           <h1>Welcome To The O2</h1>
