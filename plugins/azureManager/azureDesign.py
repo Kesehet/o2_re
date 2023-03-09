@@ -71,7 +71,7 @@ def create_vm(page:int,dat:dict,request=None):
   return ""
 
 def cleanStrForSave(string:str):
-  string = "".join(ch for ch in string if ch.isalnum())
+  string = "".join(ch for ch in string if ch.isalnum() or ch == " " or ch == "-" or ch == "_")
   string = string.lower().replace(" ","-")
   return string
 
