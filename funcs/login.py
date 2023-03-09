@@ -19,7 +19,7 @@ def checkGoogleLoginToken(token):
 
     # ID token is valid. Get the user's Google Account ID from the decoded token.
     # userid = idinfo['sub']
-    Log.writeLog("Login","Update",idinfo["name"]+" "+idinfo["email"]+" Logged in with response \n"+idinfo )
+    Log.writeLog("Login","Update",idinfo["name"]+" "+idinfo["email"]+" Logged in with response \n"+str(idinfo) )
     return [1,idinfo["email"],idinfo["name"],idinfo["picture"],idinfo["sub"]]
   except Exception as e:
     Log.writeLog("Login", "Warning","Invalid Login attempt with token "+ str(token)+" "+str(e))
