@@ -7,11 +7,13 @@ publicLinks = ["main"]
 from funcs import settings as S
 from funcs import database as DB
 from funcs import login as L
-
+from funcs import logger as Log
 def main(request):
   
+  email = L.isLoggedIn(request)[1]
   
-  return template(str(DB.getTasksByUserEmail(L.isLoggedIn(request)[1])))
+  resp = DB.getTasksByUserEmail(email)
+  return template(str(resp))
 
 
 
