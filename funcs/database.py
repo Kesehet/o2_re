@@ -18,6 +18,7 @@ def fetch(urlExtension):
 def getSearch(table:str,_designVal:str,searchBy:str,query:str):
    query = urlencode(query)
    cmd = "/"+table+"/_design/"+_designVal+"/_view/"+searchBy+"?key=\""+query+"\""
+   print("URL = " + cmd)
    return json.loads(fetch(cmd))
 
 
