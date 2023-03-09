@@ -51,10 +51,11 @@ def create_vm(page:int,dat:dict,request=None):
   if page == 4:
     data = DB.Schema().getTask(
       "VM_CREATION",
-      "vm creation by "+U.getEmail(request),
+      "The VM Creation has been requested.",
       dat,
       0,
-      [dat]
+      [dat],
+      request
       )
     DB.setRow("tasks",data)
 
