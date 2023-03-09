@@ -1,6 +1,6 @@
-name = "subtractor"
+name = "tasks"
 description = "I am a simple subtraction plugin that calculates the difference between two numbers."
-fa_icon = "minus"
+fa_icon = "list"
 privLevel = 1
 publicLinks = ["main"]
 
