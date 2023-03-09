@@ -15,11 +15,12 @@ def the404page(email,redirect=False):
       })
 
 
-def theDashboardHomePage(email,name):
+def theDashboardHomePage(email,name,dp):
   return render_template("dashboard.html",data = {
       "Settings":S,
       "name": "Anonymous" if name=="" else name,
       "pluginLinks":P.getAllHomeLinks(email),
+      "dp":dp,
       "pluginHTML":'''
         <div class="w3-container">
           <h1>Welcome To The O2</h1>

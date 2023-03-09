@@ -70,7 +70,7 @@ def dashboard():
   login = L.isLoggedIn(request)
   if login[0]:
     print(login[2])
-    return UT.theDashboardHomePage(login[1],login[2])
+    return UT.theDashboardHomePage(login[1],login[2],login[3])
   else:
     return UT.the404page(login[1])
 
