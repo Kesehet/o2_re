@@ -23,9 +23,9 @@ def template(result):
 
   boxes = ""
   for b in result:
-    boxes = boxes + box(b["name"],[
-      "<b>Name:</b>"+b["status"]["name"],
-      "<b>Name:</b>"+b["status"]["description"]
+    boxes = boxes + box(str(b["name"]),[
+      "<b>Name:</b>"+str(b["status"]["name"]),
+      "<b>Description:</b>"+str(b["status"]["description"])
     ])
 
   return '''
