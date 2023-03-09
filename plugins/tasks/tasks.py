@@ -34,7 +34,25 @@ def template(result):
   return '''
   <style>
     .Not-Started{
-      background-color: red;
+      color: white;
+      background-color: #EE4141;
+      
+    }
+    .In-Progress{
+      color: #313946;
+      background-color: #fde74c;
+    }
+    .On-Hold{
+      color: #313946;
+      background-color: #f79256;
+    }
+    .Completed{
+      color : #313946;
+      background-color: #26c485;
+    }
+    .Cancelled{
+      color: #313946;
+      background-color: #A30015;
     }
   </style>
   <div class="w3-container">
