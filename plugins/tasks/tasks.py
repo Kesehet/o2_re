@@ -25,7 +25,7 @@ def template(result):
   for b in result:
     stat = b["status"]
     boxes = boxes + box(str(b["name"]),[
-      stat["name"],
+      "<b>"+stat["name"]+"</b>",
       str(stat["description"])
     ],
     stat["name"].replace(" ", "-")
