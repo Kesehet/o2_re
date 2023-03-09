@@ -96,10 +96,10 @@ def getUserByEmail(name:str):
 
 def getTasksByUserEmail(email:str):
   ret = []
-  for task in getSearch("tasks","search","by_user_email",email):
+  tasks = json.loads(getSearch("tasks","search","by_user_email",email))
+  for task in tasks:
      ret.append(task["value"])
   return ret
-
 
 def getRowFromTable(rowID,Table):
    rowID = urlencode(rowID)
