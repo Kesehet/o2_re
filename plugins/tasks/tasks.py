@@ -32,7 +32,12 @@ def template(result):
     ],
     stat["name"].replace(" ", "-")
     )
-
+  if len(result) == 0:
+    boxes = '''
+    <div class="w3-container">
+        Well, I guess it's time to retire and become a full-time couch potato. No more tasks left to tackle!
+    </div>
+    '''
   return '''
   <style>
     .Not-Started{
