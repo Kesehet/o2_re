@@ -147,5 +147,7 @@ def plugins(name,functionCall):
 tempcont = ssl.SSLContext()
 tempcont.load_default_certs()
 
-app.run(host=PRIVATE_IP_ADDRESS,port=S.PORT,debug=True)
-#serve(app,host=PRIVATE_IP_ADDRESS,port=S.PORT)
+if S.PRODUCTION:
+  serve(app,host=PRIVATE_IP_ADDRESS,port=S.PORT)
+else:
+  app.run(host=PRIVATE_IP_ADDRESS,port=S.PORT,debug=True)

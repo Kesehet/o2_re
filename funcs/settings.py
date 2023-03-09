@@ -4,6 +4,8 @@ from funcs import shell as SHELL
 
 IP = '0.0.0.0'
 PORT = 80
+PRODUCTION = True
+
 
 Urls = {
   "base":"https://control.3duverse.com",
