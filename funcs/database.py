@@ -95,7 +95,7 @@ def getUserByEmail(name:str):
   return getRowFromTable(rows["id"],"users")
 
 def getTasksByUserEmail(email:str):
-  return getSearch("tasks","search","by_email",email)
+  return getSearch("tasks","search","by_user_email",email)
 
 
 def getRowFromTable(rowID,Table):
