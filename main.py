@@ -61,7 +61,7 @@ def login_check():
 @app.route(S.Urls["google_logout_check"],methods=["GET","POST"])
 def logout_check():
   L.LogOut(request)
-  resp = make_response(S.Urls["login"])
+  resp = make_response(S.Urls["base"])
   resp.set_cookie('userID', "")
   return resp
 
