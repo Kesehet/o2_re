@@ -56,6 +56,7 @@ class Schema:
      created_at = now.timestamp()
      updated_at = now.timestamp()
      name = urlencode(name.lower().replace(" ","-"))
+     description = urlencode(description.lower().replace(" ","-"))
      stat = [
         {"name":"Not Started","description":" The task has been created, but work has not yet begun."},
         {"name":"In Progress","description":" Work has started on the task, but it is not yet complete."},

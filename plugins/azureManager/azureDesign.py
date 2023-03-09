@@ -50,9 +50,10 @@ def create_vm(page:int,dat:dict,request=None):
       glist = glist + create_step_3_group_box(g)
     return T.create_vm_step_3("create_vm?step=4&data=[*data*]",dat,glist)
   if page == 4:
+    dat["vm_name"] = dat["vm_name"].lower().replace(" ","-")
     data = DB.Schema().getTask(
       "VM_CREATION",
-      "The VM Creation has been requested for "+dat["vm_name"].lower().replace(" ","-"),
+      "The VM Creation has been requested for "+dat["vm_name"],
       dat,
       0,
       [dat],
