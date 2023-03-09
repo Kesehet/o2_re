@@ -24,7 +24,9 @@ def template(result):
   boxes = ""
   for b in result:
     stat = b["status"]
-    boxes = boxes + box(str(b["name"]),[
+    boxes = boxes + box(
+      str(b["name"]) +"<br>"+ str(b["description"]),
+      [
       "<b>"+stat["name"]+"</b>",
       str(stat["description"])
     ],
@@ -70,7 +72,7 @@ def box(name:str,properties:list,status:str):
     lst = lst + "<p>"+prop+"</p>"
 
   return '''
-      <div class="w3-col s12 m6 l4">
+      <div class="w3-col s12 m6 l4 w3-padding-large">
 				<div class="w3-card">
 					<div class="w3-container '''+status+''' ">
 						<h3>''' + name + '''</h3>
