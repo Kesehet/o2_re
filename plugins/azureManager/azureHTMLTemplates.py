@@ -485,8 +485,8 @@ def create_vm_step_3(next_url:str,data:dict,group_list = ""):
     <script>
         var DATA = '''+str(data)+''';
         document.getElementById("next").addEventListener("click", function() {
-            DATA["vm_name"] = document.getElementById("vm_name").value;
-            DATA["group"] = document.getElementById("group_box").innerHTML;
+            DATA["vm_name"] = encodeURIComponent((document.getElementById("vm_name").value);
+            DATA["group"] = encodeURIComponent(document.getElementById("group_box").innerHTML);
             if(DATA.vm_name != undefined && DATA.group != "Select"){
                 var next_url = "'''+str(next_url)+'''".replace("[*data*]",JSON.stringify(DATA));
                 window.location.href = next_url;
