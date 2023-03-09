@@ -32,29 +32,9 @@ def template(result):
   <div class="w3-container">
 		<h2>Task List</h2>
 		<div class="w3-row">
-			<div class="w3-col s12 m6 l4">
-				<div class="w3-card">
-					<div class="w3-container w3-grey">
-						<h3>Finish project report</h3>
-					</div>
-					<div class="w3-container">
-						<p><b>Due Date:</b> March 15, 2023</p>
-						<p><b>Status:</b> Not started</p>
-					</div>
-				</div>
-			</div>
 
-			<div class="w3-col s12 m6 l4">
-				<div class="w3-card">
-					<div class="w3-container w3-blue">
-						<h3>Call mom</h3>
-					</div>
-					<div class="w3-container">
-						<p><b>Due Date:</b> March 12, 2023</p>
-						<p><b>Status:</b> Complete</p>
-					</div>
-				</div>
-			</div>
+    '''+boxes+'''
+
 		</div>
 	</div>
   '''
@@ -65,7 +45,7 @@ def box(name:str,properties:list):
   return '''
       <div class="w3-col s12 m6 l4">
 				<div class="w3-card">
-					<div class="w3-container w3-green">
+					<div class="w3-container w3-green ">
 						<h3>''' + name + '''</h3>
 					</div>
 					<div class="w3-container">
