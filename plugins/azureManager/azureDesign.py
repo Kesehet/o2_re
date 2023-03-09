@@ -52,7 +52,7 @@ def create_vm(page:int,dat:dict,request=None):
   if page == 4:
     data = DB.Schema().getTask(
       "VM_CREATION",
-      "The VM Creation has been requested for "+dat["vm_name"],
+      "The VM Creation has been requested for "+dat["vm_name"].lower().replace(" ","-"),
       dat,
       0,
       [dat],
