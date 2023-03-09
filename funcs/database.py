@@ -19,7 +19,7 @@ def getSearch(table:str,_designVal:str,searchBy:str,query:str):
    query = urlencode(query)
    cmd = "/"+table+"/_design/"+_designVal+"/_view/"+searchBy+"?key=\""+query+"\""
    print("URL = " + cmd)
-   return json.loads(fetch(cmd))
+   return json.loads(fetch(cmd))["rows"]
 
 
 def getUsers():
@@ -95,7 +95,10 @@ def getUserByEmail(name:str):
   return getRowFromTable(rows["id"],"users")
 
 def getTasksByUserEmail(email:str):
-  return getSearch("tasks","search","by_user_email",email)
+  ret = []
+  for task in getSearch("tasks","search","by_user_email",email):
+     ret.append(task["value"])
+  return ret
 
 
 def getRowFromTable(rowID,Table):
