@@ -96,9 +96,13 @@ def getUserByEmail(name:str):
 
 def getTasksByUserEmail(email:str):
   ret = []
-  tasks = json.loads(getSearch("tasks","search","by_user_email",email))
+  tasks = getSearch("tasks","search","by_user_email",email)
   for task in tasks:
-     ret.append(task["value"])
+     ret.append(
+        json.loads(
+          task["value"]
+          )
+        )
   return ret
 
 def getRowFromTable(rowID,Table):
