@@ -21,7 +21,13 @@
       color: white;
       overflow-x: hidden;
       padding-top: 20px;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
     }
+    #mySidebar::-webkit-scrollbar{
+      display:none;
+    }
+    
 
     /* Style for the links inside the sidebar */
     .sidebar a {
