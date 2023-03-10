@@ -28,7 +28,7 @@ def template(result):
       str(b["name"]) ,
       str(b["description"]),
       [
-      "<b>"+stat["name"]+"</b>",
+      "<b>"+stat["name"]+":</b>",
       str(stat["description"])
     ],
     stat["name"].replace(" ", "-")
@@ -90,7 +90,7 @@ def template(result):
 def box(name:str,descr:str,properties:list,status:str):
   lst = ""
   for prop in properties:
-    lst = lst + "<p>"+prop+"</p>"
+    lst = lst + ""+prop+""
 
   return '''
       <div class="w3-col s6 m12 l12 w3-padding-large w3-round">
