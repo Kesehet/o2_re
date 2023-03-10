@@ -25,13 +25,13 @@ def VMsBox():
                   </div>
                   <div class="w3-container w3-text">
                       <div class="w3-col l6 m6 s12 w3-button w3-red '''+vms[i]["status"].split("/")[1]+'''-off ">
-                          Off
+                          <i class="fa-solid fa-stop"></i>
                       </div>
                       <div class="w3-col l12 m12 s12 w3-button w3-green '''+vms[i]["status"].split("/")[1]+'''-on ">
-                          On
+                          <i class="fa-solid fa-play"></i>
                       </div>
                       <div class="w3-col l6 m6 s12 w3-button w3-yellow '''+vms[i]["status"].split("/")[1]+'''-restart ">
-                          Restart
+                          <i class="fa-solid fa-refresh"></i>
                       </div>
                   </div>
               </div>
