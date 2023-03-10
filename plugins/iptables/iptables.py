@@ -1,7 +1,7 @@
 name = "iptables"
 description = "I am a simple addition plugin that calculates addition of two numbers."
 fa_icon = "chart-area"
-privLevel = 3 # This is a plugin ID ... to be used as a refference
+privLevel = 9 # This is a plugin ID ... to be used as a refference
 publicLinks = [
   "main",
 ]
