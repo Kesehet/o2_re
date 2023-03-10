@@ -21,17 +21,17 @@ def VMsBox():
               <div class="w3-tooltip" >
                 <i style="animation: fading 1.'''+str(i)+'''s infinite !important;"  class="fas fa-circle w3-animate-fading w3-text-green '''+vms[i]["status"].split("/")[1]+''' "></i> 
                 '''+vms[i]["status"]+'''
-                  <p class="w3-text">
-                      <div class="w3-button w3-red">
+                  <div class="w3-text">
+                      <div class="w3-col l4 m4 s12 w3-button w3-red">
                           Off
                       </div>
-                      <div class="w3-button w3-red">
+                      <div class="w3-col l4 m4 s12 w3-button w3-green">
                           On
                       </div>
-                      <div class="w3-button w3-red">
+                      <div class="w3-col l4 m4 s12 w3-button w3-yellow">
                           Restart
                       </div>
-                  </p>
+                  </div>
               </div>
 
           </div>
