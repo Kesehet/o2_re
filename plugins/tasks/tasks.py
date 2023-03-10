@@ -42,9 +42,6 @@ def template(result):
     '''
   return '''
   <style>
-    .zoomOnHover:hover {
-      transform: scale(1.03);
-    }
     .Not-Started{
       color: white;
       background-color: #EE4141;
