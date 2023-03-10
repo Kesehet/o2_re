@@ -18,7 +18,7 @@ def VMsBox():
       <p>'''+'''</p>
           <div class="w3-container">
               <p><i class="fas fa-network-wired"></i> IP: '''+vms[i]["ip"]+'''</p>
-              <p><i class="fas fa-circle w3-animate-fading w3-text-green '''+vms[i]["status"].split("/")[1]+''' "></i> '''+vms[i]["status"]+'''</p>
+              <p><i style="animation: fading 1.'''+i+'''s infinite !important;"  class="fas fa-circle w3-animate-fading w3-text-green '''+vms[i]["status"].split("/")[1]+''' "></i> '''+vms[i]["status"]+'''</p>
           </div>
       </div>
     </div>

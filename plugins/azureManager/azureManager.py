@@ -12,6 +12,7 @@ from plugins.azureManager import azureDesign as D
 from funcs import shell as SHELL
 import json
 import urllib.parse
+
 def main(request):
   return template(request)
 
