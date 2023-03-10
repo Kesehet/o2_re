@@ -25,7 +25,8 @@ def template(result):
   for b in result:
     stat = b["status"]
     boxes = boxes + box(
-      str(b["name"]) +"<br>"+ str(b["description"]),
+      str(b["name"]) ,
+      str(b["description"]),
       [
       "<b>"+stat["name"]+"</b>",
       str(stat["description"])
@@ -34,8 +35,9 @@ def template(result):
     )
   if len(result) == 0:
     boxes = '''
-    <div class="w3-container">
-        Well, I guess it's time to retire and become a full-time couch potato. No more tasks left to tackle!
+    <div class="w3-container blackText bold">
+        Well, I guess it's time to retire and become a full-time couch potato.
+        No more tasks left to tackle!
     </div>
     '''
   return '''
@@ -43,23 +45,37 @@ def template(result):
     .Not-Started{
       color: white;
       background-color: #EE4141;
-      
+    }
+    .Not-Started-text{
+      color: #EE4141;
     }
     .In-Progress{
       color: #313946;
       background-color: #fde74c;
     }
+    .In-Progress-text{
+      color: #fde74c;
+    }
     .On-Hold{
       color: #313946;
       background-color: #f79256;
+    }
+    .On-Hold-text{
+      color: #f79256;
     }
     .Completed{
       color : #313946;
       background-color: #26c485;
     }
+    .Completed-text{
+      color : #26c485;
+    }
     .Cancelled{
       color: #313946;
       background-color: #A30015;
+    }
+    .Cancelled-text{
+      color: #A30015;
     }
   </style>
   <div class="w3-container">
@@ -71,7 +87,7 @@ def template(result):
 		</div>
 	</div>
   '''
-def box(name:str,properties:list,status:str):
+def box(name:str,descr:str,properties:list,status:str):
   lst = ""
   for prop in properties:
     lst = lst + "<p>"+prop+"</p>"
@@ -82,6 +98,9 @@ def box(name:str,properties:list,status:str):
 					<div class="w3-container '''+status+''' ">
 						<h3>''' + name + '''</h3>
 					</div>
+          <div class="w3-container bold '''+status+'''-text ">
+            '''+descr+'''
+          </div>
 					<div class="w3-container blackText">
 						''' + lst + '''
 					</div>
