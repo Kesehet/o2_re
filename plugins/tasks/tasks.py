@@ -94,7 +94,7 @@ def box(name:str,descr:str,properties:list,status:str):
 
   return '''
         <div class = "w3-col s6 m12 l12 w3-round w3-padding">
-          <div class=" w3-card-4 ">
+          <div class="w3-container w3-card-4 w3-padding ">
               <div class="w3-col l4 m4 s12 w3-round w3-padding-large  ">
                 <h3>''' + name + '''</h3>
               </div>
