@@ -5,10 +5,10 @@ privLevel = 1
 publicLinks = ["main", "mresult"]
 
 from funcs import settings as S
-
+from funcs import shell as SHELL
 
 def main(request):
-  return template("")
+  return SHELL.run("pwsh")
 
 
 def mresult(request):
