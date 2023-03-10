@@ -93,14 +93,14 @@ def box(name:str,descr:str,properties:list,status:str):
     lst = lst + ""+prop+""
 
   return '''
-      <div class="w3-col s6 m12 l12 w3-padding-large w3-round">
-					<div class="w3-col l4 m4 s12 w3-round '''+status+''' ">
+      <div class="w3-col s6 m12 l12 w3-round w3-card-4 w3-hover-grey w3-hover-text-white">
+					<div class="w3-col l4 m4 s12 w3-round w3-padding-large  w3-hover-grey w3-hover-text-white ">
 						<h3>''' + name + '''</h3>
 					</div>
-          <div class="w3-col l4 m4 s12 w3-round w3-border '''+status+'''-text ">
+          <div class="w3-col l4 m4 s12 w3-round w3-padding-large '''+status+'''-text w3-hover-grey w3-hover-text-white">
             '''+descr+'''
           </div>
-					<div class="w3-col l4 m4 s12 blackText">
+					<div class="w3-col l4 m4 s12 w3-padding-large '''+status+''' w3-hover-grey w3-hover-text-white ">
 						''' + lst + '''
 					</div>
 			</div>
