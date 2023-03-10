@@ -22,13 +22,13 @@ def VMsBox():
                 <i style="animation: fading 1.'''+str(i)+'''s infinite !important;"  class="fas fa-circle w3-animate-fading w3-text-green '''+vms[i]["status"].split("/")[1]+''' "></i> 
                 '''+vms[i]["status"]+'''
                   <div class="w3-text">
-                      <div class="w3-col l4 m4 s12 w3-button w3-red '''+vms[i]["status"].split("/")[1]+'''-off ">
+                      <div class="w3-col l6 m6 s12 w3-button w3-red '''+vms[i]["status"].split("/")[1]+'''-off ">
                           Off
                       </div>
-                      <div class="w3-col l4 m4 s12 w3-button w3-green '''+vms[i]["status"].split("/")[1]+'''-on ">
+                      <div class="w3-col l12 m12 s12 w3-button w3-green '''+vms[i]["status"].split("/")[1]+'''-on ">
                           On
                       </div>
-                      <div class="w3-col l4 m4 s12 w3-button w3-yellow '''+vms[i]["status"].split("/")[1]+'''-restart ">
+                      <div class="w3-col l6 m6 s12 w3-button w3-yellow '''+vms[i]["status"].split("/")[1]+'''-restart ">
                           Restart
                       </div>
                   </div>
