@@ -99,10 +99,10 @@ def box(name:str,descr:str,properties:list,status:str):
                 <h3>''' + name + '''</h3>
               </div>
               <div class="w3-col l4 m4 s12 w3-round w3-padding-large '''+status+'''-text ">
-                '''+descr+'''
+                <p>'''+descr+'''</p>
               </div>
               <div class="w3-col l4 m4 s12 w3-padding-large '''+status+'''  ">
-                ''' + lst + '''
+                <p>''' + lst + '''</p>
               </div>
           </div>
         </div>
