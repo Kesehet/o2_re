@@ -26,12 +26,12 @@ def VMsBox():
   return ret
 def createNewVMBox():
   return '''
-      <div onclick="window.location.href = 'create_vm?step=1'" class="w3-container w3-third w3-padding zoomOnHover">  
+      <div onclick="window.location.href = 'create_vm?step=1'" class="w3-container w3-third w3-padding zoomOnHover w3-tooltip">  
       <div class="w3-card-4 w3-hover-gray card">
       <i class="fas fa-plus card-icon"></i>
       <h2 style="text-transform:capitalize;" >'''+ "Create New VM" +'''</h2>
       <p>'''+'''</p>
-          <div class="w3-container w3-tooltip">
+          <div class="w3-container ">
               <p>Are you ready to put your virtual carpentry skills to the test?</p>
               <p class="w3-text" >Let's hammer out a new virtual machine and build the future of computing, one bit at a time.</p>
           </div>
