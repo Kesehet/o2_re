@@ -110,6 +110,8 @@ def css():
     }
     .running-off{
       display:block;
+      color: #313946;
+      background-color: #A30015;
     }
     .deallocated-off{
       display:none;
@@ -119,9 +121,13 @@ def css():
     }
     .deallocated-on{
       display:block;
+      color : #313946;
+      background-color: #26c485;
     }
     .running-restart{
       display:block;
+      color: #313946;
+      background-color: #fde74c;
     }
     .deallocated-restart{
       display:none;
