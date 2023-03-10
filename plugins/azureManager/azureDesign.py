@@ -24,13 +24,13 @@ def VMsBox():
                     '''+vms[i]["status"]+'''
                   </div>
                   <div class="w3-container w3-text">
-                      <div class="w3-col l6 m6 s12 w3-button w3-red '''+vms[i]["status"].split("/")[1]+'''-off ">
+                      <div class="w3-col l6 m6 s12 w3-button '''+vms[i]["status"].split("/")[1]+'''-off ">
                           <i class="fa-solid fa-stop"></i>
                       </div>
-                      <div class="w3-col l12 m12 s12 w3-button w3-green '''+vms[i]["status"].split("/")[1]+'''-on ">
+                      <div class="w3-col l12 m12 s12 w3-button  '''+vms[i]["status"].split("/")[1]+'''-on ">
                           <i class="fa-solid fa-play"></i>
                       </div>
-                      <div class="w3-col l6 m6 s12 w3-button w3-yellow '''+vms[i]["status"].split("/")[1]+'''-restart ">
+                      <div class="w3-col l6 m6 s12 w3-button  '''+vms[i]["status"].split("/")[1]+'''-restart ">
                           <i class="fa-solid fa-refresh"></i>
                       </div>
                   </div>
@@ -106,7 +106,10 @@ def css():
 ">
   	<style>
     .deallocated{
-      color: red !important;
+      color: #A30015 !important;
+    }
+    .running{
+      color: #26c485 !important;
     }
     .running-off{
       display:block;
