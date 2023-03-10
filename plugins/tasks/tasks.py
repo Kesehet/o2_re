@@ -28,8 +28,8 @@ def template(result):
       str(b["name"]) ,
       str(b["description"]),
       [
-      "<b>"+stat["name"]+":</b>",
-      str(stat["description"])
+      "<b>"+stat["name"]+"</b>",
+      "<span class='w3-hide-small' >:"+str(stat["description"])+"</span>"
     ],
     stat["name"].replace(" ", "-")
     )
