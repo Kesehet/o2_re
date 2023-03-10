@@ -43,7 +43,7 @@ def template(result):
   return '''
   <style>
     .zoomOnHover:hover {
-      transform: scale(1.1);
+      transform: scale(1.03);
     }
     .Not-Started{
       color: white;
