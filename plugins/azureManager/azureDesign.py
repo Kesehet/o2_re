@@ -22,13 +22,13 @@ def VMsBox():
                 <i style="animation: fading 1.'''+str(i)+'''s infinite !important;"  class="fas fa-circle w3-animate-fading w3-text-green '''+vms[i]["status"].split("/")[1]+''' "></i> 
                 '''+vms[i]["status"]+'''
                   <div class="w3-text">
-                      <div class="w3-col l4 m4 s12 w3-button w3-red">
+                      <div class="w3-col l4 m4 s12 w3-button w3-red '''+vms[i]["status"].split("/")[1]+'''-off ">
                           Off
                       </div>
-                      <div class="w3-col l4 m4 s12 w3-button w3-green">
+                      <div class="w3-col l4 m4 s12 w3-button w3-green '''+vms[i]["status"].split("/")[1]+'''-on ">
                           On
                       </div>
-                      <div class="w3-col l4 m4 s12 w3-button w3-yellow">
+                      <div class="w3-col l4 m4 s12 w3-button w3-yellow '''+vms[i]["status"].split("/")[1]+'''-restart ">
                           Restart
                       </div>
                   </div>
@@ -106,6 +106,25 @@ def css():
     .deallocated{
       color: red !important;
     }
+    .running-off{
+      display:block;
+    }
+    .deallocated-off{
+      display:none;
+    }
+    .running-on{
+      display:none;
+    }
+    .deallocated-on{
+      display:block;
+    }
+    .running-restart{
+      display:block;
+    }
+    .deallocated-restart{
+      display:none;
+    }
+    
 		.card {
 			background-color: #f1f1f1;
 			border-radius: 5px;
