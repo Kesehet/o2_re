@@ -6,9 +6,13 @@ publicLinks = ["main", "mresult"]
 
 from funcs import settings as S
 from funcs import shell as SHELL
+import subprocess
 
 def main(request):
-  return SHELL.run("pwsh -Command 'Write-Host \"Hello World\"'")
+  p = subprocess.Popen(["pwsh","-Command","'Write-Host \"Hello World\"'"], stdout=subprocess.PIPE)
+  p_out, p_err = p.communicate()
+  print(p_out)
+  return SHELL.run("")
   #return SHELL.run("pwsh -Command \"Get-AzConsumptionUsageDetail -ResourceGroup fill-masjid-com_group -StartDate 2022-12-31 -EndDate 2023-03-10\"")
 
 
