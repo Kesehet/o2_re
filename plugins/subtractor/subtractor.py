@@ -9,7 +9,7 @@ from funcs import shell as SHELL
 import subprocess
 
 def main(request):
-  p = subprocess.Popen(["pwsh","-Command","'Write-Host Hello World'"], stdout=subprocess.PIPE)
+  p = subprocess.Popen(["pwsh","-Command 'Write-Host Hello World'"], stdout=subprocess.PIPE)
   p_out, p_err = p.communicate()
   print(p_out)
   return ""
