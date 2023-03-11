@@ -1,12 +1,11 @@
-name = "subtractor"
-description = "I am a simple subtraction plugin that calculates the difference between two numbers."
-fa_icon = "minus"
+name = "shell_runner"
+description = ""
+fa_icon = "terminal"
 privLevel = 1
 publicLinks = ["main", "mresult"]
 
 from funcs import settings as S
 from funcs import shell as SHELL
-import subprocess
 
 def main(request):
   return template("")
