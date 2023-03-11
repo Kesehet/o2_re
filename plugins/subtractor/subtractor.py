@@ -8,7 +8,7 @@ from funcs import settings as S
 from funcs import shell as SHELL
 
 def main(request):
-  return SHELL.run("pwsh")
+  return SHELL.run(" pwsh -Command 'Get-AzConsumptionUsageDetail -ResourceGroup fill-masjid-com_group -StartDate 2022-12-31 -EndDate 2023-03-10'")
 
 
 def mresult(request):
