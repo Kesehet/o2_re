@@ -11,8 +11,7 @@ import subprocess
 def main(request):
   p = subprocess.Popen(["pwsh","-Command 'Write-Host Hello World'"], stdout=subprocess.PIPE)
   p_out, p_err = p.communicate()
-  print(p_out)
-  return ""
+  return p_out.decode("utf-8")
   #return SHELL.run("pwsh -Command \"Get-AzConsumptionUsageDetail -ResourceGroup fill-masjid-com_group -StartDate 2022-12-31 -EndDate 2023-03-10\"")
 
 
