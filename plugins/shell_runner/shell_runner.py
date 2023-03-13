@@ -19,7 +19,7 @@ def mresult(request):
 def template(result):
   return '''
   <div class="w3-container">
-    <h1>Subtractor Plugin</h1>
+    <h1>Shell Runner</h1>
     <form method="post" action="''' + S.Urls["plugin"].replace(
     '<name>', name).replace("<functionCall>", "mresult") + '''">
       <input name="cmd" type="text">
