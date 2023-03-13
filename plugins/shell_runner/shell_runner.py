@@ -37,6 +37,7 @@ def template(result):
       <input name="cmd" type="text">
       <input type="submit">
     </form>
-    ''' + result + '''
+
+    <div class="w3-container">"''' + result + '''</div>
   </div>
   '''
