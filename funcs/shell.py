@@ -24,7 +24,7 @@ def run(s:str):
     return execute(cmdStringToList(s))
 
 def execute(cmdList:list):
-    p = PtyProcessUnicode.spawn(cmdList, dimensions=(24,130))
+    p = PtyProcessUnicode.spawn(cmdList, dimensions=(240,1300))
     script_output = []
     while True:
         try:
@@ -32,7 +32,7 @@ def execute(cmdList:list):
         except EOFError:
             break
     p.close()
-    return ' '.join(script_output)
+    return '\n'.join(script_output)
     # try:
     #     return subprocess.check_output(cmdList,shell=True,env={"Noob":"noob"}).decode('utf-8')
     # except subprocess.CalledProcessError as e:
