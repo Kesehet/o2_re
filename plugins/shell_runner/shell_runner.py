@@ -24,9 +24,10 @@ def template(result):
   return '''
   <div class="w3-container">
   <div class="w3-container w3-red">Debug Only...</div>
-    <h2>Shell Runner</h2>
+    
     <form class="w3-container w3-half" method="post" action="''' + S.Urls["plugin"].replace(
     '<name>', name).replace("<functionCall>", "mresult") + '''">
+      <h2>Shell Runner</h2>
       <input name="cmd" type="text">
       <input type="submit">
     </form>
