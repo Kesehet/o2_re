@@ -21,6 +21,9 @@ def mps(request):
   cmd = "pwsh -Command " + cmd
   return template("<h3>"+cmd+"</h3>"+"<pre>"+SHELL.run(cmd)+"</pre>")
 
+
+
+
 def template(result):
   return '''
   <div class="w3-container">
@@ -29,13 +32,13 @@ def template(result):
     <form class="w3-container w3-half" method="post" action="''' + S.Urls["plugin"].replace(
     '<name>', name).replace("<functionCall>", "mresult") + '''">
       <h2>Shell Runner</h2>
-      <input name="cmd" type="text">
+      <textarea name="cmd" type="text"></textarea>
       <input type="submit">
     </form>
     <form class="w3-container w3-half" method="post" action="''' + S.Urls["plugin"].replace(
     '<name>', name).replace("<functionCall>", "mps") + '''">
       <h2>Power Shell</h2>
-      <input name="cmd" type="text">
+      <textarea name="cmd" type="text"></textarea>
       <input type="submit">
     </form>
 
