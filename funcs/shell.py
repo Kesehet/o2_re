@@ -21,7 +21,17 @@ def pre():
     pass
 
 def run(s:str):
-    return execute(cmdStringToList(s))
+    cmds = s.split("\n")
+    executed = []
+    i = 0
+    for comm in cmds:
+        i = i +1
+        try:
+            executed.append(execute(cmdStringToList(comm)))
+        except:
+            "[Error in Line: " + str(i)+"] "+ comm
+        
+    return '\n'.join(executed)
 
 def execute(cmdList:list):
     p = PtyProcessUnicode.spawn(cmdList, dimensions=(240,1300))
