@@ -4,6 +4,11 @@ from funcs import settings as S
 
 
 
+from ptyprocess import PtyProcessUnicode
+
+
+
+
 
 
 
@@ -19,10 +24,19 @@ def run(s:str):
     return execute(cmdStringToList(s))
 
 def execute(cmdList:list):
-    try:
-        return subprocess.check_output(cmdList,shell=True,env={"Noob":"noob"}).decode('utf-8')
-    except subprocess.CalledProcessError as e:
-        return e.output.decode("utf-8")
+    p = PtyProcessUnicode.spawn(cmdList, dimensions=(24,130))
+    script_output = []
+    while True:
+        try:
+            script_output.append(p.readline().rstrip())
+        except EOFError:
+            break
+    p.close()
+    return ' '.join(script_output)
+    # try:
+    #     return subprocess.check_output(cmdList,shell=True,env={"Noob":"noob"}).decode('utf-8')
+    # except subprocess.CalledProcessError as e:
+    #    return e.output.decode("utf-8")
 
 def getAllCommands(index:int,params:dict):
     return setCommandParams(params,commands[index]["cmd"])
