@@ -18,7 +18,7 @@ def mresult(request):
 
 def mps(request):
   cmd = request.form.get("cmd")
-  return template("<pre>"+SHELL.run(cmd)+"</pre>")
+  return template("<h3>"+cmd+"</h3>"+"<pre>"+SHELL.run(cmd)+"</pre>")
 
 def template(result):
   return '''
