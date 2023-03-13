@@ -2,7 +2,7 @@ name = "shell_runner"
 description = ""
 fa_icon = "terminal"
 privLevel = 1
-publicLinks = ["main", "mresult"]
+publicLinks = ["main", "mresult","mps"]
 
 from funcs import settings as S
 from funcs import shell as SHELL
@@ -16,12 +16,21 @@ def mresult(request):
   return template("<pre>"+SHELL.run(cmd)+"</pre>")
 
 
+def mps(request):
+  cmd = request.form.get("cmd")
+  return template("<pre>"+SHELL.run(cmd)+"</pre>")
+
 def template(result):
   return '''
   <div class="w3-container">
     <h1>Shell Runner</h1>
-    <form method="post" action="''' + S.Urls["plugin"].replace(
+    <form class="w3-half" method="post" action="''' + S.Urls["plugin"].replace(
     '<name>', name).replace("<functionCall>", "mresult") + '''">
+      <input name="cmd" type="text">
+      <input type="submit">
+    </form>
+    <form class="w3-half" method="post" action="''' + S.Urls["plugin"].replace(
+    '<name>', name).replace("<functionCall>", "mps") + '''">
       <input name="cmd" type="text">
       <input type="submit">
     </form>
