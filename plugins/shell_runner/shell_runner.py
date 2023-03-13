@@ -23,14 +23,16 @@ def mps(request):
 def template(result):
   return '''
   <div class="w3-container">
-    <h1>Shell Runner</h1>
+  <div class="w3-container w3-red">Debug Only...</div>
+    <h2>Shell Runner</h2>
     <form class="w3-half" method="post" action="''' + S.Urls["plugin"].replace(
     '<name>', name).replace("<functionCall>", "mresult") + '''">
       <input name="cmd" type="text">
       <input type="submit">
     </form>
-    <form class="w3-half" method="post" action="''' + S.Urls["plugin"].replace(
+    <form class="w3-container w3-half" method="post" action="''' + S.Urls["plugin"].replace(
     '<name>', name).replace("<functionCall>", "mps") + '''">
+      <h2>Power Shell</h2>
       <input name="cmd" type="text">
       <input type="submit">
     </form>
