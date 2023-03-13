@@ -29,7 +29,7 @@ def run(s:str):
         try:
             executed.append(execute(cmdStringToList(comm)))
         except:
-            "[Error in Line: " + str(i)+"] "+ comm
+            executed.append("[Error in Line: " + str(i)+"] "+ comm)
         
     return '\n'.join(executed)
 
