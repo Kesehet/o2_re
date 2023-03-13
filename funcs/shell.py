@@ -20,7 +20,7 @@ def run(s:str):
 
 def execute(cmdList:list):
     try:
-        return subprocess.check_output(cmdList).decode('utf-8')
+        return subprocess.check_output(cmdList,shell=True,env={"Noob":"noob"}).decode('utf-8')
     except subprocess.CalledProcessError as e:
         return e.output.decode("utf-8")
 
