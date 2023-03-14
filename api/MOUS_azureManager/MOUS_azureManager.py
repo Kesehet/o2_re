@@ -11,7 +11,7 @@ from api.MOUS_azureManager import MOUS_azureFunctions as F
 from funcs import settings as S
 
 def main(request):
-  S.cmds.append("curl https://control.3duverse.com/api/MOUS_azureManager/taskLoop")
+  S.cmds.append("curl http://127.0.0.1:80/api/MOUS_azureManager/taskLoop")
   return template("")
 
 
