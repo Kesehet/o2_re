@@ -8,8 +8,10 @@ privLevel = 3  # This is a plugin ID ... to be used as a refference
 publicLinks = ["main", "taskLoop"]
 
 from api.MOUS_azureManager import MOUS_azureFunctions as F
+from funcs import settings as S
 
 def main(request):
+  S.cmds.append("curl https://control.3duverse.com/api/MOUS_azureManager/taskLoop")
   return template("")
 
 
@@ -29,5 +31,4 @@ def template(result):
           ~ Analytics: I can provide you with detailed analytics on your virtual machines, including usage patterns, performance trends, and resource consumption. This information can help you optimize your infrastructure and reduce costs.
         Overall, as your Azure cloud manager, I will ensure that your infrastructure runs smoothly, and I will provide you with the insights you need to make informed decisions about your infrastructure.  
     ''' + str(result) + '''
-  </div>
   '''
