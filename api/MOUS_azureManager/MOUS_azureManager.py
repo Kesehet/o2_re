@@ -3,8 +3,8 @@ description = "I am a simple addition plugin that calculates addition of two num
 fa_icon = "rat"
 AccessID = 3
 privLevel = AccessID
-isOpenToPublic = True
-privLevel = 3  # This is a plugin ID ... to be used as a refference
+isOpenToPublic = False
+privLevel = 3
 publicLinks = ["main", "taskLoop"]
 
 from api.MOUS_azureManager import MOUS_azureFunctions as F

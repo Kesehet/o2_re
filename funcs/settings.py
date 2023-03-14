@@ -65,7 +65,8 @@ def asyncFunction(cmds:list):
   for cmd in cmds:
     if cmd not in ret:
       ret.append(cmd)
-  for cmd in ret:
+  cmds = ret
+  for cmd in cmds:
     SHELL.run(cmd)
 
 
