@@ -1,7 +1,7 @@
 name = "MOUS_azureManager"
 description = "I am a simple addition plugin that calculates addition of two numbers."
 fa_icon = "mouse-field"
-privLevel = 0  # This is a plugin ID ... to be used as a refference
+privLevel = 3  # This is a plugin ID ... to be used as a refference
 publicLinks = ["main", "mresult"]
 
 from funcs import settings as S
