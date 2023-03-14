@@ -3,7 +3,8 @@ description = "I am a simple addition plugin that calculates addition of two num
 fa_icon = "rat"
 AccessID = 3
 privLevel = AccessID
-isOpenToPublic = False
+
+isOpenToPublic = True #This is open for the curl to access it
 privLevel = 3
 publicLinks = ["main", "taskLoop"]
 
