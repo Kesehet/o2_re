@@ -21,7 +21,7 @@ def template(result):
   return '''
   <div class="w3-container">
     <div class="w3-tooltip">
-      Azure Manager
+      <h1>Azure Manager</h1>
     <div class="w3-container w3-text w3-tiny">
         Yes, as an Azure Cloud Manager, I am capable of managing all your machines in Azure including creating, deleting, and load balancing them using Azure PowerShell. Additionally, I can provide you with analytics on all the machines to help you make informed decisions about your infrastructure.
 
