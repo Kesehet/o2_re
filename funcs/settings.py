@@ -5,7 +5,7 @@ from funcs import shell as SHELL
 IP = '0.0.0.0'
 PORT = 80
 PRODUCTION = False
-
+MYNAME = "main_machine"
 
 Urls = {
   "base":"https://control.3duverse.com",
@@ -18,7 +18,7 @@ Urls = {
   "edgeCertify":"/3duverse.com.pem",
   "edgeKey":"/3duverse.com.key"
   }
-CouchDBLoginURL = "http://db.3duverse.com"
+CouchDBLoginURL = "https://db.3duverse.com"
 CouchDBLoginAuth = ("admin","6Jr9Z8L#k5F!@yxBM7%$S&KPcAfX3G2d")
 
 
