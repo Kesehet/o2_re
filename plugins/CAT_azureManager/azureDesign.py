@@ -1,8 +1,8 @@
 import json
 from funcs import shell as SHELL
 from funcs import database as DB
-from plugins.azureManager import azureFuncs as A
-from plugins.azureManager import azureHTMLTemplates as T
+from plugins.CAT_azureManager import azureFuncs as A
+from plugins.CAT_azureManager import azureHTMLTemplates as T
 from funcs import users as U
 from funcs import settings as S
 

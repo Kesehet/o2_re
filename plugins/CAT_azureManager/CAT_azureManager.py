@@ -1,4 +1,4 @@
-name = "azureManager"
+name = "CAT_azureManager"
 description = "Azure Manager"
 fa_icon = " fab fa-windows "
 privLevel = 3 # This is a plugin ID ... to be used as a refference
@@ -8,7 +8,7 @@ publicLinks = [
 ]
 
 
-from plugins.azureManager import azureDesign as D
+from plugins.CAT_azureManager import azureDesign as D
 from funcs import shell as SHELL
 import json
 import urllib.parse
