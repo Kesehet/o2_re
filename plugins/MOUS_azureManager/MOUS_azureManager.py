@@ -1,6 +1,6 @@
 name = "MOUS_azureManager"
 description = "I am a simple addition plugin that calculates addition of two numbers."
-fa_icon = "mouse-field"
+fa_icon = "rat"
 privLevel = 3  # This is a plugin ID ... to be used as a refference
 publicLinks = ["main", "mresult"]
 
@@ -23,7 +23,7 @@ def template(result):
     <div class="w3-tooltip">
       <h1>Azure Manager</h1>
     <div class="w3-container w3-text w3-tiny">
-        Yes, as an Azure Cloud Manager, I am capable of managing all your machines in Azure including creating, deleting, and load balancing them using Azure PowerShell. Additionally, I can provide you with analytics on all the machines to help you make informed decisions about your infrastructure.
+        I am Azure Cloud Manager, capable of managing all your machines in Azure including creating, deleting, and load balancing them using Azure PowerShell. Additionally, I can provide you with analytics on all the machines to help you make informed decisions about your infrastructure.
 
         Here are some of the tasks I can perform for you using Azure PowerShell:
 
