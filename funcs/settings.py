@@ -18,7 +18,7 @@ Urls = {
   "edgeCertify":"/3duverse.com.pem",
   "edgeKey":"/3duverse.com.key"
   }
-CouchDBLoginURL = "https://db.3duverse.com"
+CouchDBLoginURL = "http://10.0.0.5"
 CouchDBLoginAuth = ("admin","6Jr9Z8L#k5F!@yxBM7%$S&KPcAfX3G2d")
 
 
