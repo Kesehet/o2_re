@@ -61,8 +61,12 @@ cmds = [
 ]
 
 def asyncFunction(cmds:list):
-    for cmd in cmds:
-      SHELL.run(cmd)
+  ret = []
+  for cmd in cmds:
+    if cmd not in ret:
+      ret.append(cmd)
+  for cmd in ret:
+    SHELL.run(cmd)
 
 
 setInterval(10, asyncFunction, cmds)
