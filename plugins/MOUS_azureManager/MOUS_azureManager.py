@@ -22,7 +22,7 @@ def template(result):
   <div class="w3-container">
     <div class="w3-tooltip">
       <h1>Azure Manager</h1>
-    <div class="w3-container w3-text w3-tiny">
+    <pre class="w3-container w3-text w3-tiny">
         I am Azure Cloud Manager, capable of managing all your machines in Azure including creating, deleting, and load balancing them using Azure PowerShell. Additionally, I can provide you with analytics on all the machines to help you make informed decisions about your infrastructure.
 
         Here are some of the tasks I can perform for you using Azure PowerShell:
@@ -38,7 +38,7 @@ def template(result):
         Analytics: I can provide you with detailed analytics on your virtual machines, including usage patterns, performance trends, and resource consumption. This information can help you optimize your infrastructure and reduce costs.
 
         Overall, as your Azure cloud manager, I will ensure that your infrastructure runs smoothly, and I will provide you with the insights you need to make informed decisions about your infrastructure.
-    </div>
+    </pre>
     </div>
     
     ''' + str(result) + '''
