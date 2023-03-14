@@ -16,7 +16,7 @@ def main(request):
 
 
 def taskLoop(request):
-  return str(F.getAllTasks())
+  return str(F.main())
 
 
 def template(result):
