@@ -126,7 +126,7 @@ Update-AzVM -ResourceGroupName {resource_group_name} -VM $vm"""
         elif image_type.lower() == "Basic".lower():
             return "Standard_B1ls"
         else:
-            return ""
+            return "no_size"
 
 
 
