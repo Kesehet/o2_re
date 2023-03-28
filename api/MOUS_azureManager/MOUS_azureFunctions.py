@@ -110,7 +110,7 @@ Update-AzVM -ResourceGroupName {resource_group_name} -VM $vm"""
         return sizes
 
     def get_best_size(self,location, image_type):
-        sizes = get_available_vm_sizes(location)
+        sizes = self.get_available_vm_sizes(location)
         premium_sizes = ["Standard_NC6s_v3", "Standard_NC12s_v3", "Standard_NC24rs_v3", "Standard_NC24s_v3"]
         standard_sizes = ["Standard_A1_v2", "Standard_A2m_v2", "Standard_A2_v2", "Standard_A4m_v2", "Standard_A4_v2", "Standard_A8m_v2", "Standard_A8_v2"]
         basic_sizes = ["Standard_B1ls", "Standard_B1ms", "Standard_B1s", "Standard_B2ms", "Standard_B2s", "Standard_B4ms", "Standard_B8ms", "Standard_B12ms", "Standard_B16ms", "Standard_B20ms"]
