@@ -10,9 +10,10 @@ def main():
     # Get all documents from the 'tasks' database where the task status name is 'Not Started'
     result = couchdb.search("tasks", "by_status_name", key='"Not Started"')
     documents = result.get("rows", [])
-
+    
     for doc in documents:
         # Get the data for the VM creation task from the task document
+        print(doc)
         data = doc.get("data", {})
         print(data)
         resource_group_name = data.get("group")
