@@ -28,7 +28,7 @@ def main():
         res = azure_vm_manager.create_virtual_machine(resource_group_name, vm_name, location, image, username, password)
         # Update the task status name to 'Completed'
         doc["value"]["status"]["name"] = "Completed"
-        couchdb.update_document("tasks", doc["_id"], doc)
+        couchdb.update_document("tasks", doc["value"]["_id"], doc)
 
 	
 	
@@ -46,6 +46,9 @@ class AzureVmManager:
         return SHELL.run("pwsh -Command "+ command)
 
     def create_resource_group(self, resource_group_name, location):
+        '''
+        This function creates a new resource group in Azure with the given name and location. It uses the Azure PowerShell command New-AzResourceGroup to create the resource group and returns the result of this command. Additionally, it creates a new document in the resourceGroup_DBName database using CouchDB, which stores the name and location of the new resource group for future reference.
+        '''
         command = f"New-AzResourceGroup -Name {resource_group_name} -Location {location}"
         result = self.run_powershell_command(command)
         self.couchdb.create_document(self.resourceGroup_DBName, {"name": resource_group_name, "location": location})
