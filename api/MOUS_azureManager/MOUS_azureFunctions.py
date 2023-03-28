@@ -1,6 +1,6 @@
 from funcs import database as DB
 from funcs import settings as S
-from funcs import shell as SHELL
+
 def getAllTasks():
     return DB.getTasks()
 
@@ -37,6 +37,7 @@ class AzureVmManager:
         self.couchdb = couchdb
 
     def run_powershell_command(self, command):
+        from funcs import shell as SHELL
         return SHELL.run(command)
 
     def create_resource_group(self, resource_group_name, location):
