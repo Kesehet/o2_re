@@ -78,7 +78,7 @@ class AzureVmManager:
         # Add the VM to the virtual machine database
         self.couchdb.create_document(self.virtualMachine_DBName, {"name": vm_name, "resource_group": resource_group_name, "location": location, "size": size, "image": image, "username": username, "password": password})
         
-        return result " \n command used was " + command
+        return result + " \n command used was " + command
 
 
     def update_virtual_machine(self, resource_group_name, vm_name, size):
