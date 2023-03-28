@@ -101,6 +101,7 @@ Update-AzVM -ResourceGroupName {resource_group_name} -VM $vm"""
         return result
     
     def get_available_vm_sizes(self, location):
+        location = self.convert_location(location)
         command = f"Get-AzVMSize -Location {location}"
         output = self.run_powershell_command(command)
         sizes = [size["Name"] for size in output]
@@ -130,4 +131,51 @@ Update-AzVM -ResourceGroupName {resource_group_name} -VM $vm"""
     def get_vm_vcpus(self, size):
         # Extract the number of vCPUs from the VM size string
         return int(re.search(r"vcpus=(\d+)", size).group(1))
+    
+    def convert_location(location):
+        location_dict = {
+            "eastus": ["east us"],
+            "eastus2": ["east us 2"],
+            "westus": ["west us"],
+            "centralus": ["central us"],
+            "northcentralus": ["north central us"],
+            "southcentralus": ["south central us"],
+            "northeurope": ["north europe"],
+            "westeurope": ["west europe"],
+            "eastasia": ["east asia"],
+            "southeastasia": ["southeast asia"],
+            "japaneast": ["japan east"],
+            "japanwest": ["japan west"],
+            "australiaeast": ["australia east"],
+            "australiasoutheast": ["australia southeast"],
+            "australiacentral": ["australia central"],
+            "brazilsouth": ["brazil south", "south brazil"],
+            "southindia": ["south india"],
+            "centralindia": ["central india"],
+            "westindia": ["west india"],
+            "canadacentral": ["canada central"],
+            "canadaeast": ["canada east"],
+            "westus2": ["west us 2"],
+            "westcentralus": ["west central us"],
+            "uksouth": ["uk south"],
+            "ukwest": ["uk west"],
+            "koreacentral": ["korea central"],
+            "koreasouth": ["korea south"],
+            "francecentral": ["france central"],
+            "southafricanorth": ["south africa north", "north south africa"],
+            "uaenorth": ["uae north", "north uae"],
+            "switzerlandnorth": ["switzerland north", "north switzerland"],
+            "germanywestcentral": ["germany west central", "west central germany"],
+            "norwayeast": ["norway east", "east norway"],
+            "jioindiawest": ["jio india west", "west jio india"],
+            "westus3": ["west us 3"],
+            "swedencentral": ["sweden central", "central sweden"],
+            "qatarcentral": ["qatar central", "central qatar"]
+        }
+        
+        for key in location_dict:
+            if location.lower() in location_dict[key]:
+                return key
+        
+        raise ValueError(f"Invalid location: {location}")
 
