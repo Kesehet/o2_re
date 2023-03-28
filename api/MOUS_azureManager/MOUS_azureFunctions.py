@@ -28,6 +28,7 @@ def main():
         res = azure_vm_manager.create_virtual_machine(resource_group_name, vm_name, location, image, username, password)
         # Update the task status name to 'Completed'
         doc["value"]["status"]["name"] = "Completed"
+        doc["value"]["description"] = doc["value"]["description"] + "\n The host said => "+ str(res)
         couchdb.update_document("tasks", doc["value"]["_id"], doc)
 
 	
