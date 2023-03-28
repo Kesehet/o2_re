@@ -132,7 +132,7 @@ Update-AzVM -ResourceGroupName {resource_group_name} -VM $vm"""
         # Extract the number of vCPUs from the VM size string
         return int(re.search(r"vcpus=(\d+)", size).group(1))
     
-    def convert_location(location):
+    def convert_location(self,location):
         location_dict = {
             "eastus": ["east us"],
             "eastus2": ["east us 2"],
