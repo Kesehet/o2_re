@@ -1,5 +1,6 @@
 from funcs import database as DB
 from funcs import settings as S
+from funcs import shell as SHELL
 def getAllTasks():
     return DB.getTasks()
 
@@ -31,7 +32,7 @@ def main():
 	
 	
 class AzureVmManager:
-    from funcs import shell as SHELL
+    
     def __init__(self, couchdb):
         self.couchdb = couchdb
 
