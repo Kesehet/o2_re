@@ -281,7 +281,7 @@ class CouchDB:
         Updates the document with the given ID in the specified database with the provided data
         """
         url = self._make_url(db_name, doc_id)
-        response = requests.patch(url, auth=self.auth, json=data)
+        response = requests.put(url, auth=self.auth, json=data)
         response.raise_for_status()
         return response.json()
 
