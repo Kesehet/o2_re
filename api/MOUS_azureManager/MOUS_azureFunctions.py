@@ -20,16 +20,16 @@ def main():
         vm_name = data.get("vm_name")
         location = data.get("location")
         size = data.get("tier")
-        image = "default_image"  # Replace with appropriate image for your use case
+        image = "Canonical:UbuntuServer:18.04-LTS:latest"  # Replace with appropriate image for your use case
         username = "user"  # Replace with appropriate username for your use case
         password = "eU2CA2n@1Qmu7z9m19*"  # Replace with appropriate password for your use case
 
         # Create the VM using the Azure VM Manager
-        res = azure_vm_manager.create_virtual_machine(resource_group_name, vm_name, location, image, username, password)
+        res = azure_vm_manager.create_virtual_machine(resource_group_name, vm_name, location,size, image, username, password)
         print(res)
         # Update the task status name to 'Completed'
         doc["value"]["status"]["name"] = "Completed"
-        doc["value"]["description"] = doc["value"]["description"] + "\n The host said => "+ str(res)
+        doc["value"]["description"] = doc["value"]["description"] + " The host said => "+ str(res)
         
         couchdb.update_document("tasks", doc["value"])
         
@@ -64,11 +64,11 @@ class AzureVmManager:
         self.couchdb.delete_document(self.resourceGroup_DBName, resource_group_name, "<rev>")
         return result
 
-    def create_virtual_machine(self, resource_group_name, vm_name, location, image, username, password):
+    def create_virtual_machine(self, resource_group_name, vm_name, location,size, image, username, password):
         
         # Choose the appropriate VM size based on the image type
         location = self.convert_location(location=location)
-        size = self.get_best_size(location=location,image_type=image.lower())
+        size = self.get_best_size(location=location,image_type=size.lower())
             
         # Create the VM using the selected size
         command = f"""New-AzVm -ResourceGroupName {resource_group_name} -Name {vm_name} -Location {location} -VMSize {size} \
@@ -78,7 +78,7 @@ class AzureVmManager:
         # Add the VM to the virtual machine database
         self.couchdb.create_document(self.virtualMachine_DBName, {"name": vm_name, "resource_group": resource_group_name, "location": location, "size": size, "image": image, "username": username, "password": password})
         
-        return result + " \n command used was " + command
+        return result + " command used was " + command
 
 
     def update_virtual_machine(self, resource_group_name, vm_name, size):
