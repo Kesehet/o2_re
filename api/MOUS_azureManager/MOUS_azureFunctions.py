@@ -29,7 +29,7 @@ def main():
         # Update the task status name to 'Completed'
         doc["value"]["status"]["name"] = "Completed"
         doc["value"]["description"] = doc["value"]["description"] + "\n The host said => "+ str(res)
-        couchdb.update_document("tasks", doc["value"]["_rev"], doc)
+        couchdb.update_document("tasks", doc["value"]["_rev"], doc["value"])
 
 	
 	
