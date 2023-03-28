@@ -30,7 +30,9 @@ def main():
         
         
         # Create the VM using the Azure VM Manager
-        res = azure_vm_manager.create_virtual_machine(resource_group_name, vm_name, location,size, image, username, password)
+        location = azure_vm_manager.convert_location(location)
+        res = azure_vm_manager.create_resource_group(resource_group_name,location)
+        res = res + azure_vm_manager.create_virtual_machine(resource_group_name, vm_name, location,size, image, username, password)
         print(res)
         # Update the task status name to 'Completed'
         doc["value"]["status"]["name"] = "Completed"
@@ -77,6 +79,7 @@ class AzureVmManager:
             
         # Create the VM using the selected size
         command = f"""New-AzVm -ResourceGroupName {resource_group_name} -Name {vm_name} -Location {location} -Size {size} -Image {image}                    -Credential (New-Object System.Management.Automation.PSCredential('{username}', (ConvertTo-SecureString '{password}' -AsPlainText -Force)))"""
+        print(command)
         result = self.run_powershell_command(command)
         
         # Add the VM to the virtual machine database
