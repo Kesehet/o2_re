@@ -25,8 +25,8 @@ def main():
         password = "eU2CA2n@1Qmu7z9m19*"  # Replace with appropriate password for your use case
         
         # Update Progress
-        doc["value"]["status"]["name"] = "In Progress"
-        couchdb.update_document("tasks", doc["value"])
+        # doc["value"]["status"]["name"] = "In Progress"
+        # couchdb.update_document("tasks", doc["value"])
         
         
         # Create the VM using the Azure VM Manager
