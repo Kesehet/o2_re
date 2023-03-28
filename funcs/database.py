@@ -276,14 +276,16 @@ class CouchDB:
         response.raise_for_status()
         return response.json()
 
-    def update_document(self, db_name, doc_id, data):
+    def update_document(self, db_name, data):
         """
-        Updates the document with the given ID in the specified database with the provided data
+        Updates an existing document with the provided data in the specified database
         """
+        doc_id = data["_id"]
         url = self._make_url(db_name, doc_id)
         response = requests.put(url, auth=self.auth, json=data)
         response.raise_for_status()
         return response.json()
+
 
 
     def delete_document(self, db_name, doc_id, rev):

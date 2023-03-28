@@ -15,7 +15,7 @@ def main():
         # Get the data for the VM creation task from the task document
         
         data = doc.get("value", {}).get("data",{})
-        couchdb.delete_document("tasks",doc["value"]["_id"],doc["value"]["_rev"])
+        
         resource_group_name = data.get("group")
         vm_name = data.get("vm_name")
         location = data.get("location")
@@ -29,8 +29,8 @@ def main():
         # Update the task status name to 'Completed'
         doc["value"]["status"]["name"] = "Completed"
         doc["value"]["description"] = doc["value"]["description"] + "\n The host said => "+ str(res)
-        print(doc)
-        couchdb.create_document("tasks",doc["value"])
+        
+        couchdb.update_document("tasks", doc["value"])
         
 
 	
