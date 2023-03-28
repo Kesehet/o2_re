@@ -23,8 +23,8 @@ def main():
         password = "eU2CA2n@1Qmu7z9m19*"  # Replace with appropriate password for your use case
 
         # Create the VM using the Azure VM Manager
-        azure_vm_manager.create_virtual_machine(resource_group_name, vm_name, location, size, image, username, password)
-
+        res = azure_vm_manager.create_virtual_machine(resource_group_name, vm_name, location, size, image, username, password)
+        print(res)
         # Update the task status name to 'Completed'
         print(doc)
         doc["value"]["status"]["name"] = "Completed"
