@@ -24,6 +24,7 @@ def template(result):
   boxes = ""
   for b in result:
     stat = b["status"]
+    stat["description"] = str(stat["description"]).replace("\\","\\\\")
     boxes = boxes + box(
       str(b["name"]) ,
       str(b["description"]),
