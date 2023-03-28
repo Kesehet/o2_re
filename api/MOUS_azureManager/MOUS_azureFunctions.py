@@ -36,7 +36,7 @@ def main():
         print(res)
         # Update the task status name to 'Completed'
         doc["value"]["status"]["name"] = "Completed"
-        doc["value"]["description"] = doc["value"]["description"] + " The host said => "+ str(res)
+        doc["value"]["description"] = doc["value"]["description"] + " The host said => "+ str(res).replace("\\","\\\\")
         
         couchdb.update_document("tasks", doc["value"])
         

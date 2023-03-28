@@ -26,14 +26,14 @@ def template(result):
     stat = b["status"]
     stat["description"] = str(stat["description"]).replace("\\","\\\\")
     boxes = boxes + box(
-      str(b["name"]) ,
-      str(b["description"]),
-      [
-      "<b>"+stat["name"]+"</b>",
-      "<span class='w3-hide-small' >:"+str(stat["description"])+"</span>"
-    ],
-    stat["name"].replace(" ", "-")
-    )
+                str(b["name"]) ,
+                str(b["description"]),
+                [
+                  "<b>"+stat["name"]+"</b>",
+                  "<span class='w3-hide-small' >:"+str(stat["description"])+"</span>"
+                ],
+                stat["name"].replace(" ", "-")
+            )
   if len(result) == 0:
     boxes = '''
     <div class="w3-container blackText bold">
