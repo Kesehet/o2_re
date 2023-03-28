@@ -151,7 +151,7 @@ Update-AzVM -ResourceGroupName {resource_group_name} -VM $vm"""
             "australiaeast": ["australia east"],
             "australiasoutheast": ["australia southeast"],
             "australiacentral": ["australia central"],
-            "brazilsouth": ["brazil south", "south brazil"],
+            "brazilsouth": ["brazil south", "south brazil", "brazil southeast"],
             "southindia": ["south india"],
             "centralindia": ["central india"],
             "westindia": ["west india"],
