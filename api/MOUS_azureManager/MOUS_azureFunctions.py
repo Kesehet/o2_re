@@ -14,6 +14,7 @@ def main():
     for doc in documents:
         # Get the data for the VM creation task from the task document
         data = doc.get("data", {})
+        print(data)
         resource_group_name = data.get("group")
         vm_name = data.get("vm_name")
         location = data.get("location")
