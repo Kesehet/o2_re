@@ -35,6 +35,10 @@ class AzureVmManager:
     
     def __init__(self, couchdb):
         self.couchdb = couchdb
+        self.virtualMachine_DBName = "virtual_machines"
+        self.resourceGroup_DBName = "azure_resource_groups"
+        self.couchdb.create_database(self.virtualMachine_DBName)
+        self.couchdb.create_database(self.resourceGroup_DBName)
 
     def run_powershell_command(self, command):
         from funcs import shell as SHELL
@@ -43,20 +47,20 @@ class AzureVmManager:
     def create_resource_group(self, resource_group_name, location):
         command = f"New-AzResourceGroup -Name {resource_group_name} -Location {location}"
         result = self.run_powershell_command(command)
-        self.couchdb.create_document("azure_resource_groups", {"name": resource_group_name, "location": location})
+        self.couchdb.create_document(self.resourceGroup_DBName, {"name": resource_group_name, "location": location})
         return result
 
     def delete_resource_group(self, resource_group_name):
         command = f"Remove-AzResourceGroup -Name {resource_group_name} -Force"
         result = self.run_powershell_command(command)
-        self.couchdb.delete_document("azure_resource_groups", resource_group_name, "<rev>")
+        self.couchdb.delete_document(self.resourceGroup_DBName, resource_group_name, "<rev>")
         return result
 
     def create_virtual_machine(self, resource_group_name, vm_name, location, size, image, username, password):
         command = f"""New-AzVm -ResourceGroupName {resource_group_name} -Name {vm_name} -Location {location} -VMSize {size} \
 -Image {image} -Credential (New-Object System.Management.Automation.PSCredential('{username}', (ConvertTo-SecureString '{password}' -AsPlainText -Force)))"""
         result = self.run_powershell_command(command)
-        self.couchdb.create_document("azure_virtual_machines", {"name": vm_name, "resource_group": resource_group_name, "location": location, "size": size, "image": image, "username": username, "password": password})
+        self.couchdb.create_document(self.virtualMachine_DBName, {"name": vm_name, "resource_group": resource_group_name, "location": location, "size": size, "image": image, "username": username, "password": password})
         return result
 
     def update_virtual_machine(self, resource_group_name, vm_name, size):
@@ -64,13 +68,13 @@ class AzureVmManager:
 $vm.HardwareProfile.VmSize = '{size}'
 Update-AzVM -ResourceGroupName {resource_group_name} -VM $vm"""
         result = self.run_powershell_command(command)
-        self.couchdb.update_document("azure_virtual_machines", vm_name, {"size": size})
+        self.couchdb.update_document(self.virtualMachine_DBName, vm_name, {"size": size})
         return result
 
     def delete_virtual_machine(self, resource_group_name, vm_name):
         command = f"Remove-AzVM -ResourceGroupName {resource_group_name} -Name {vm_name} -Force"
         result = self.run_powershell_command(command)
-        self.couchdb.delete_document("azure_virtual_machines", vm_name, "<rev>")
+        self.couchdb.delete_document(self.virtualMachine_DBName, vm_name, "<rev>")
         return result
 
     def rename_virtual_machine(self, resource_group_name, vm_name, new_vm_name):
@@ -78,5 +82,5 @@ Update-AzVM -ResourceGroupName {resource_group_name} -VM $vm"""
 $vm.Name = '{new_vm_name}'
 Update-AzVM -ResourceGroupName {resource_group_name} -VM $vm"""
         result = self.run_powershell_command(command)
-        self.couchdb.update_document("azure_virtual_machines", vm_name, {"name": new_vm_name})
+        self.couchdb.update_document(self.virtualMachine_DBName, vm_name, {"name": new_vm_name})
         return result
