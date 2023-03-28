@@ -177,7 +177,7 @@ Update-AzVM -ResourceGroupName {resource_group_name} -VM $vm"""
         }
         
         for key in location_dict:
-            if location.lower() in location_dict[key] pr location.lower() in key:
+            if location.lower() in location_dict[key] or location.lower() in key:
                 return key
         
         raise ValueError(f"Invalid location: {location}")
