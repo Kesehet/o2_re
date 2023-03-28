@@ -62,7 +62,7 @@ class AzureVmManager:
         sizes = self.get_available_vm_sizes(location)
         print(sizes)
         # Choose the appropriate VM size based on the image type
-        size = self.get_best_size(location=self.convert_location(location=location),image.lower())
+        size = self.get_best_size(location=self.convert_location(location=location),image_type=image.lower())
             
         # Create the VM using the selected size
         command = f"""New-AzVm -ResourceGroupName {resource_group_name} -Name {vm_name} -Location {location} -VMSize {size} \
