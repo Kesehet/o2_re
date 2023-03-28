@@ -27,7 +27,7 @@ def main():
 
         # Update the task status name to 'Completed'
         print(doc)
-        doc["status"]["name"] = "Completed"
+        doc["value"]["status"]["name"] = "Completed"
         couchdb.update_document("tasks", doc["_id"], doc)
 
 	
