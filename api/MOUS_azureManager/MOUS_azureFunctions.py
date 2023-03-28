@@ -21,7 +21,7 @@ def main():
         location = data.get("location")
         size = data.get("tier")
         image = "Canonical:UbuntuServer:18.04-LTS:latest"  # Replace with appropriate image for your use case
-        username = "user"  # Replace with appropriate username for your use case
+        username = "vpjtqwv"  # Replace with appropriate username for your use case
         password = "eU2CA2n@1Qmu7z9m19*"  # Replace with appropriate password for your use case
         
         # Update Progress
