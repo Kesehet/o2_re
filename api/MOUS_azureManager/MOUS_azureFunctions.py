@@ -71,8 +71,13 @@ class AzureVmManager:
         size = self.get_best_size(location=location,image_type=size.lower())
             
         # Create the VM using the selected size
-        command = f"""New-AzVm -ResourceGroupName {resource_group_name} -Name {vm_name} -Location {location} -VMSize {size} \
-    -Image {image} -Credential (New-Object System.Management.Automation.PSCredential('{username}', (ConvertTo-SecureString '{password}' -AsPlainText -Force)))"""
+        command = f"""New-AzVm -ResourceGroupName {resource_group_name}
+          -Name {vm_name}
+            -Location {location}
+              -Size {size}
+                \
+                -Image {image}
+                    -Credential (New-Object System.Management.Automation.PSCredential('{username}', (ConvertTo-SecureString '{password}' -AsPlainText -Force)))"""
         result = self.run_powershell_command(command)
         
         # Add the VM to the virtual machine database
