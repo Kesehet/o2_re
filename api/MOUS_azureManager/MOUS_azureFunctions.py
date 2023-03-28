@@ -19,8 +19,8 @@ def main():
         location = data.get("cityName")
         size = data.get("tier")
         image = "default_image"  # Replace with appropriate image for your use case
-        username = "default_username"  # Replace with appropriate username for your use case
-        password = "default_password"  # Replace with appropriate password for your use case
+        username = "user"  # Replace with appropriate username for your use case
+        password = "eU2CA2n@1Qmu7z9m19*"  # Replace with appropriate password for your use case
 
         # Create the VM using the Azure VM Manager
         azure_vm_manager.create_virtual_machine(resource_group_name, vm_name, location, size, image, username, password)
