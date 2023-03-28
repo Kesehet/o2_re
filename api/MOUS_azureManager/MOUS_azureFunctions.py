@@ -29,6 +29,7 @@ def main():
         # Update the task status name to 'Completed'
         doc["value"]["status"]["name"] = "Completed"
         doc["value"]["description"] = doc["value"]["description"] + "\n The host said => "+ str(res)
+        print(doc)
         couchdb.create_document("tasks",doc["value"])
         
 
