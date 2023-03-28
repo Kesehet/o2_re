@@ -13,9 +13,9 @@ def main():
     
     for doc in documents:
         # Get the data for the VM creation task from the task document
-        print(doc)
+        
         data = doc.get("value", {}).get("data",{})
-        print(data)
+        
         resource_group_name = data.get("group")
         vm_name = data.get("vm_name")
         location = data.get("location")
@@ -106,6 +106,7 @@ Update-AzVM -ResourceGroupName {resource_group_name} -VM $vm"""
         location = self.convert_location(location)
         command = f"Get-AzVMSize -Location {location}"
         output = self.run_powershell_command(command)
+        print(output)
         sizes = [size["Name"] for size in output]
         return sizes
 
