@@ -23,7 +23,7 @@ def main():
         password = "eU2CA2n@1Qmu7z9m19*"  # Replace with appropriate password for your use case
 
         # Create the VM using the Azure VM Manager
-        res = azure_vm_manager.create_virtual_machine(resource_group_name, vm_name, location, size, image, username, password)
+        res = azure_vm_manager.create_virtual_machine(resource_group_name, vm_name, location, image, username, password)
         # Update the task status name to 'Completed'
         doc["value"]["status"]["name"] = "Completed"
         couchdb.update_document("tasks", doc["_id"], doc)
