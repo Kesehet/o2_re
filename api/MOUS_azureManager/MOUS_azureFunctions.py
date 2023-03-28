@@ -43,7 +43,7 @@ class AzureVmManager:
 
     def run_powershell_command(self, command):
         from funcs import shell as SHELL
-        return SHELL.run(command)
+        return SHELL.run("pwsh -Command "+ command)
 
     def create_resource_group(self, resource_group_name, location):
         command = f"New-AzResourceGroup -Name {resource_group_name} -Location {location}"
