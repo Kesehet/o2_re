@@ -16,13 +16,13 @@ def main():
         
         data = doc.get("value", {}).get("data",{})
         
-        resource_group_name = data.get("group")
+        resource_group_name = data.get("group")+azure_vm_manager.generate_random_string(12)
         vm_name = data.get("vm_name")
         location = data.get("location")
         size = data.get("tier")
         image = "Canonical:UbuntuServer:18.04-LTS:latest"  # Replace with appropriate image for your use case
-        username = "vpjtqwv"  # Replace with appropriate username for your use case
-        password = "eU2CA2n@1Qmu7z9m19*"  # Replace with appropriate password for your use case
+        username = azure_vm_manager.generate_random_string(12)  # Replace with appropriate username for your use case
+        password = azure_vm_manager.generate_random_string(12)  # Replace with appropriate password for your use case
         
         # Update Progress
         # doc["value"]["status"]["name"] = "In Progress"
@@ -184,4 +184,10 @@ Update-AzVM -ResourceGroupName {resource_group_name} -VM $vm"""
                 return key
         
         raise ValueError(f"Invalid location: {location}")
+    
+    def generate_random_string(self,length):
+        import random
+        import string
+        random_string = ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(length))
+        return f"-{random_string}-{''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(length))}-"
 
