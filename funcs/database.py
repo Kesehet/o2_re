@@ -216,3 +216,90 @@ def urlencode(b):
 
 
 
+
+
+class CouchDB:
+    """
+    Class for performing CRUD operations on a CouchDB instance
+    """
+    from funcs import settings as S
+    def __init__(self):
+        self.host = S.CouchDBLoginURL
+        self.auth = S.CouchDBLoginAuth
+
+    def _make_url(self, *path):
+        """
+        Helper method to construct a URL from the provided path segments
+        """
+        segments = [f"{self.host}"]
+        segments.extend(str(p) for p in path)
+        return "/".join(segments)
+
+    def create_database(self, name):
+        """
+        Creates a new database with the given name, if it does not already exist
+        """
+        url = self._make_url(name)
+        response = requests.head(url, auth=self.auth)
+        if response.status_code == 200:
+            print(f"Database {name} already exists")
+        elif response.status_code == 404:
+            response = requests.put(url, auth=self.auth)
+            response.raise_for_status()
+            print(f"Database {name} created successfully")
+        else:
+            response.raise_for_status()
+
+    def delete_database(self, name):
+        """
+        Deletes the database with the given name
+        """
+        url = self._make_url(name)
+        response = requests.delete(url, auth=self.auth)
+        response.raise_for_status()
+
+    def get_document(self, db_name, doc_id):
+        """
+        Retrieves the document with the given ID from the specified database
+        """
+        url = self._make_url(db_name, doc_id)
+        response = requests.get(url, auth=self.auth)
+        response.raise_for_status()
+        return response.json()
+
+    def create_document(self, db_name, data):
+        """
+        Creates a new document with the provided data in the specified database
+        """
+        url = self._make_url(db_name)
+        response = requests.post(url, auth=self.auth, json=data)
+        response.raise_for_status()
+        return response.json()
+
+    def update_document(self, db_name, doc_id, data):
+        """
+        Updates the document with the given ID in the specified database with the provided data
+        """
+        url = self._make_url(db_name, doc_id)
+        response = requests.put(url, auth=self.auth, json=data)
+        response.raise_for_status()
+        return response.json()
+
+    def delete_document(self, db_name, doc_id, rev):
+        """
+        Deletes the document with the given ID and revision from the specified database
+        """
+        url = self._make_url(db_name, doc_id)
+        params = {"rev": rev}
+        response = requests.delete(url, auth=self.auth, params=params)
+        response.raise_for_status()
+        return response.json()
+
+    def search(self, db_name, view_name, **kwargs):
+        """
+        Executes a view query against the specified database and returns the results
+        """
+        url = self._make_url(db_name, "_design", view_name, "_view", view_name)
+        response = requests.get(url, auth=self.auth, params=kwargs)
+        response.raise_for_status()
+        return response.json()
