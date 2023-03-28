@@ -106,8 +106,14 @@ Update-AzVM -ResourceGroupName {resource_group_name} -VM $vm"""
         location = self.convert_location(location)
         command = f"Get-AzVMSize -Location {location}"
         output = self.run_powershell_command(command)
-        print(output)
-        sizes = [size["Name"] for size in output]
+        # Split output by lines and remove header/footer
+        lines = output.strip().splitlines()[2:-2]
+        sizes = []
+        for line in lines:
+            # Split each line by whitespace and extract name field
+            fields = line.split()
+            name = fields[0]
+            sizes.append(name)
         return sizes
 
     def get_best_vm_size(self, sizes):
