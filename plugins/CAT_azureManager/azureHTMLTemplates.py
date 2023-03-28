@@ -130,7 +130,7 @@ def create_vm_step_1(next_url:str):
             console.log(dat)
             for(var i = 0 ; i < dat.length;i++){
                 var d = dat[i];
-                addPoint(d.lat,d.long,"#1fb2d0",{"cityName":d.fullName,"location":d.name2,"place":d.name2,desc:d.desc})
+                addPoint(d.lat,d.long,"#1fb2d0",{"cityName":d.fullName,"location":d.location,"place":d.name2,desc:d.desc})
             }
             setOptimalList();
         }

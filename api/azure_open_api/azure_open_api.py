@@ -37,6 +37,7 @@ def getAllLocations():
     ret.append({
       "name":name,
       "name2":place,
+      "location":name2,
       "fullName":fullName,
       "lat":latitude,
       "long":longitude,
