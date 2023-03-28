@@ -119,26 +119,14 @@ Update-AzVM -ResourceGroupName {resource_group_name} -VM $vm"""
 
     def get_best_size(self,location, image_type):
         sizes = self.get_available_vm_sizes(location)
-        premium_sizes = ["Standard_NC6s_v3", "Standard_NC12s_v3", "Standard_NC24rs_v3", "Standard_NC24s_v3"]
-        standard_sizes = ["Standard_A1_v2", "Standard_A2m_v2", "Standard_A2_v2", "Standard_A4m_v2", "Standard_A4_v2", "Standard_A8m_v2", "Standard_A8_v2"]
-        basic_sizes = ["Standard_B1ls", "Standard_B1ms", "Standard_B1s", "Standard_B2ms", "Standard_B2s", "Standard_B4ms", "Standard_B8ms", "Standard_B12ms", "Standard_B16ms", "Standard_B20ms"]
-        best_size = ""
-        if image_type == "Premium":
-            for size in sizes:
-                if size in premium_sizes:
-                    best_size = size
-                    break
-        elif image_type == "Standard":
-            for size in sizes:
-                if size in standard_sizes:
-                    best_size = size
-                    break
-        elif image_type == "Basic":
-            for size in sizes:
-                if size in basic_sizes:
-                    best_size = size
-                    break
-        return best_size
+        if image_type.lower() == "Premium".lower():
+            return "Standard_B1ls"
+        elif image_type.lower() == "Standard".lower():
+            return "Standard_B1ls"
+        elif image_type.lower() == "Basic".lower():
+            return "Standard_B1ls"
+        else:
+            return ""
 
 
 
