@@ -62,12 +62,7 @@ class AzureVmManager:
         sizes = self.get_available_vm_sizes(location)
         print(sizes)
         # Choose the appropriate VM size based on the image type
-        if "premium" in image.lower():
-            size = self.get_best_vm_size(sizes)
-        elif "standard" in image.lower():
-            size = self.get_standard_vm_size(sizes)
-        else:
-            size = self.get_basic_vm_size(sizes)
+        size = self.get_best_size(location=self.convert_location(location=location),image.lower())
             
         # Create the VM using the selected size
         command = f"""New-AzVm -ResourceGroupName {resource_group_name} -Name {vm_name} -Location {location} -VMSize {size} \
@@ -116,31 +111,32 @@ Update-AzVM -ResourceGroupName {resource_group_name} -VM $vm"""
             sizes.append(name)
         return sizes
 
-    def get_best_vm_size(self, sizes):
-        # Choose the VM size with the most RAM and highest number of vCPUs
-        best_size = max(sizes, key=lambda size: (self.get_vm_ram(size), self.get_vm_vcpus(size)))
+    def get_best_size(self,location, image_type):
+        sizes = get_available_sizes(location)
+        premium_sizes = ["Standard_NC6s_v3", "Standard_NC12s_v3", "Standard_NC24rs_v3", "Standard_NC24s_v3"]
+        standard_sizes = ["Standard_A1_v2", "Standard_A2m_v2", "Standard_A2_v2", "Standard_A4m_v2", "Standard_A4_v2", "Standard_A8m_v2", "Standard_A8_v2"]
+        basic_sizes = ["Standard_B1ls", "Standard_B1ms", "Standard_B1s", "Standard_B2ms", "Standard_B2s", "Standard_B4ms", "Standard_B8ms", "Standard_B12ms", "Standard_B16ms", "Standard_B20ms"]
+        best_size = ""
+        if image_type == "Premium":
+            for size in sizes:
+                if size in premium_sizes:
+                    best_size = size
+                    break
+        elif image_type == "Standard":
+            for size in sizes:
+                if size in standard_sizes:
+                    best_size = size
+                    break
+        elif image_type == "Basic":
+            for size in sizes:
+                if size in basic_sizes:
+                    best_size = size
+                    break
         return best_size
 
-    def get_standard_vm_size(self, sizes):
-        # Choose the VM size with the lowest number of vCPUs
-        standard_sizes = [size for size in sizes if "standard" in size.lower()]
-        standard_size = min(standard_sizes, key=lambda size: self.get_vm_vcpus(size))
-        return standard_size
 
-    def get_basic_vm_size(self, sizes):
-        # Choose the VM size with the lowest amount of RAM
-        basic_sizes = [size for size in sizes if "basic" in size.lower()]
-        basic_size = min(basic_sizes, key=lambda size: self.get_vm_ram(size))
-        return basic_size
 
-    def get_vm_ram(self, size):
-        # Extract the RAM size from the VM size string
-        return int(re.search(r"\d+", size).group())
 
-    def get_vm_vcpus(self, size):
-        # Extract the number of vCPUs from the VM size string
-        return int(re.search(r"vcpus=(\d+)", size).group(1))
-    
     def convert_location(self,location):
         location_dict = {
             "eastus": ["east us"],
