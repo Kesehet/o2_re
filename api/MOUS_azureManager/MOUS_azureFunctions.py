@@ -16,7 +16,7 @@ def main():
         data = doc.get("data", {})
         resource_group_name = data.get("group")
         vm_name = data.get("vm_name")
-        location = data.get("cityName")
+        location = data.get("location")
         size = data.get("tier")
         image = "default_image"  # Replace with appropriate image for your use case
         username = "user"  # Replace with appropriate username for your use case
