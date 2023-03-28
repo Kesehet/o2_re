@@ -30,7 +30,7 @@ def main():
         doc["value"]["status"]["name"] = "Completed"
         doc["value"]["description"] = doc["value"]["description"] + "\n The host said => "+ str(res)
         couchdb.create_document("tasks",doc["value"])
-        couchdb.update_document("tasks", doc["value"]["_rev"], doc["value"])
+        
 
 	
 	
