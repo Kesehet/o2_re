@@ -118,7 +118,7 @@ Update-AzVM -ResourceGroupName {resource_group_name} -VM $vm"""
         return sizes
 
     def get_best_size(self,location, image_type):
-        sizes = self.get_available_vm_sizes(location)
+        #sizes = self.get_available_vm_sizes(location)
         if image_type.lower() == "Premium".lower():
             return "Standard_B1ls"
         elif image_type.lower() == "Standard".lower():
