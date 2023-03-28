@@ -23,9 +23,12 @@ def main():
         image = "Canonical:UbuntuServer:18.04-LTS:latest"  # Replace with appropriate image for your use case
         username = "user"  # Replace with appropriate username for your use case
         password = "eU2CA2n@1Qmu7z9m19*"  # Replace with appropriate password for your use case
+        
+        # Update Progress
         doc["value"]["status"]["name"] = "In Progress"
-        doc["value"]["description"] = doc["value"]["description"] + " The host said => "+ str(res)
-
+        couchdb.update_document("tasks", doc["value"])
+        
+        
         # Create the VM using the Azure VM Manager
         res = azure_vm_manager.create_virtual_machine(resource_group_name, vm_name, location,size, image, username, password)
         print(res)
