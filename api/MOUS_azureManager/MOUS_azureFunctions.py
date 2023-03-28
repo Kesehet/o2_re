@@ -24,9 +24,7 @@ def main():
 
         # Create the VM using the Azure VM Manager
         res = azure_vm_manager.create_virtual_machine(resource_group_name, vm_name, location, size, image, username, password)
-        print(res)
         # Update the task status name to 'Completed'
-        print(doc)
         doc["value"]["status"]["name"] = "Completed"
         couchdb.update_document("tasks", doc["_id"], doc)
 
@@ -57,12 +55,28 @@ class AzureVmManager:
         self.couchdb.delete_document(self.resourceGroup_DBName, resource_group_name, "<rev>")
         return result
 
-    def create_virtual_machine(self, resource_group_name, vm_name, location, size, image, username, password):
+    def create_virtual_machine(self, resource_group_name, vm_name, location, image, username, password):
+        # Get a list of available VM sizes for the specified location
+        sizes = self.get_available_vm_sizes(location)
+        print(sizes)
+        # Choose the appropriate VM size based on the image type
+        if "premium" in image.lower():
+            size = self.get_best_vm_size(sizes)
+        elif "standard" in image.lower():
+            size = self.get_standard_vm_size(sizes)
+        else:
+            size = self.get_basic_vm_size(sizes)
+            
+        # Create the VM using the selected size
         command = f"""New-AzVm -ResourceGroupName {resource_group_name} -Name {vm_name} -Location {location} -VMSize {size} \
--Image {image} -Credential (New-Object System.Management.Automation.PSCredential('{username}', (ConvertTo-SecureString '{password}' -AsPlainText -Force)))"""
+    -Image {image} -Credential (New-Object System.Management.Automation.PSCredential('{username}', (ConvertTo-SecureString '{password}' -AsPlainText -Force)))"""
         result = self.run_powershell_command(command)
+        
+        # Add the VM to the virtual machine database
         self.couchdb.create_document(self.virtualMachine_DBName, {"name": vm_name, "resource_group": resource_group_name, "location": location, "size": size, "image": image, "username": username, "password": password})
+        
         return result
+
 
     def update_virtual_machine(self, resource_group_name, vm_name, size):
         command = f"""$vm = Get-AzVM -ResourceGroupName {resource_group_name} -Name {vm_name}
@@ -85,3 +99,35 @@ Update-AzVM -ResourceGroupName {resource_group_name} -VM $vm"""
         result = self.run_powershell_command(command)
         self.couchdb.update_document(self.virtualMachine_DBName, vm_name, {"name": new_vm_name})
         return result
+    
+    def get_available_vm_sizes(self, location):
+        command = f"Get-AzVMSize -Location {location}"
+        output = self.run_powershell_command(command)
+        sizes = [size["Name"] for size in output]
+        return sizes
+
+    def get_best_vm_size(self, sizes):
+        # Choose the VM size with the most RAM and highest number of vCPUs
+        best_size = max(sizes, key=lambda size: (self.get_vm_ram(size), self.get_vm_vcpus(size)))
+        return best_size
+
+    def get_standard_vm_size(self, sizes):
+        # Choose the VM size with the lowest number of vCPUs
+        standard_sizes = [size for size in sizes if "standard" in size.lower()]
+        standard_size = min(standard_sizes, key=lambda size: self.get_vm_vcpus(size))
+        return standard_size
+
+    def get_basic_vm_size(self, sizes):
+        # Choose the VM size with the lowest amount of RAM
+        basic_sizes = [size for size in sizes if "basic" in size.lower()]
+        basic_size = min(basic_sizes, key=lambda size: self.get_vm_ram(size))
+        return basic_size
+
+    def get_vm_ram(self, size):
+        # Extract the RAM size from the VM size string
+        return int(re.search(r"\d+", size).group())
+
+    def get_vm_vcpus(self, size):
+        # Extract the number of vCPUs from the VM size string
+        return int(re.search(r"vcpus=(\d+)", size).group(1))
+
