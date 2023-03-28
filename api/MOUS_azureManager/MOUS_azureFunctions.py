@@ -152,7 +152,7 @@ Update-AzVM -ResourceGroupName {resource_group_name} -VM $vm"""
             "australiaeast": ["australia east"],
             "australiasoutheast": ["australia southeast"],
             "australiacentral": ["australia central"],
-            "brazilsouth": ["brazil south", "south brazil", "brazil southeast"],
+            "brazilsouth": ["brazil south", "south brazil", "brazil southeast","brazilsouth"],
             "southindia": ["south india"],
             "centralindia": ["central india"],
             "westindia": ["west india"],
@@ -177,7 +177,7 @@ Update-AzVM -ResourceGroupName {resource_group_name} -VM $vm"""
         }
         
         for key in location_dict:
-            if location.lower() in location_dict[key]:
+            if location.lower() in location_dict[key] pr location.lower() in key:
                 return key
         
         raise ValueError(f"Invalid location: {location}")
