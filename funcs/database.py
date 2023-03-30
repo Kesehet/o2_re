@@ -44,7 +44,7 @@ class Schema:
   def __init__(self) -> None:
       pass
   def getTask(
-        param,
+        self,
         name:str,
         description:str,
         data:dict,
@@ -65,13 +65,13 @@ class Schema:
         "name":name,
         "description":description,
         "data":data,
-        "status":getStatus(status),
+        "status": self.getStatus(status),
         "task_list":task_list,
         "created_by":login_deatils,
         "updated_at":updated_at,
         "created_at":created_at
      }
-  def getStatus(index:int):
+  def getStatus(self,index:int):
      stat = [
         {"name":"Not Started","description":" The task has been created, but work has not yet begun."},
         {"name":"In Progress","description":" Work has started on the task, but it is not yet complete."},
