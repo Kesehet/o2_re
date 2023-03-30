@@ -99,10 +99,9 @@ class AzureVmManager:
             connection_info = f"Use RDP to connect: mstsc /v:{ip_address} /u:{username} /p:{password}"
         else:
             connection_info = f"Use SSH to connect: ssh {username}@{ip_address} -p 22"
-		
-        # Add the VM to the virtual machine database
+        #  Add the VM to the virtual machine database 
+        #  self.couchdb.create_document(self.virtualMachine_DBName, {"connection_info":connection_info,"name": vm_name, "resource_group": resource_group_name, "location": location, "size": size, "image": image, "username": username, "password": password})
         self.couchdb.create_document(self.virtualMachine_DBName, {"connection_info":connection_info,"name": vm_name, "resource_group": resource_group_name, "location": location, "size": size, "image": image, "username": username, "password": password})
-        
         return result + " command used was " + command + ". Connection info: " + connection_info
 
 
