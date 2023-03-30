@@ -17,7 +17,7 @@ def main():
     for doc in documents:
         task = doc.get("value",{})
         task_name = task.get("name","")
-        return updateTaskStatus(doc)
+        return updateTaskStatus(doc,1)
         if task_name == "vm_creation":
             couchdb.get_document("tasks",)
             create_vm(doc)
@@ -30,7 +30,7 @@ def main():
         
 def updateTaskStatus(doc,status:int):
     taskNow = couchdb.get_document("tasks",doc["id"])
-    taskNow["status"] = DB.Schema.getStatus(1)
+    taskNow["status"] = DB.Schema.getStatus(status)
     return couchdb.update_document("tasks",taskNow)
 
 def create_vm(doc):
