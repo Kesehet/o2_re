@@ -71,21 +71,40 @@ class AzureVmManager:
         self.couchdb.delete_document(self.resourceGroup_DBName, resource_group_name, "<rev>")
         return result
 
-    def create_virtual_machine(self, resource_group_name, vm_name, location,size, image, username, password):
-        
-        # Choose the appropriate VM size based on the image type
-        location = self.convert_location(location=location)
-        size = self.get_best_size(location=location,image_type=size.lower())
-            
-        # Create the VM using the selected size
-        command = f"""New-AzVm -ResourceGroupName {resource_group_name} -Name {vm_name} -Location {location} -Size {size} -PublicIpSku Standard -Zone 1 -Image {image} -Credential (New-Object System.Management.Automation.PSCredential('{username}', (ConvertTo-SecureString '{password}' -AsPlainText -Force)))"""
-        print(command)
-        result = self.run_powershell_command(command)
-        
-        # Add the VM to the virtual machine database
-        self.couchdb.create_document(self.virtualMachine_DBName, {"name": vm_name, "resource_group": resource_group_name, "location": location, "size": size, "image": image, "username": username, "password": password})
-        
-        return result + " command used was " + command
+	def create_virtual_machine(self, resource_group_name, vm_name, location, size, image, username, password):
+	    
+	    # Choose the appropriate VM size based on the image type
+	    location = self.convert_location(location=location)
+	    size = self.get_best_size(location=location, image_type=size.lower())
+	        
+	    # Create the VM using the selected size
+	    command = f"""New-AzVm -ResourceGroupName {resource_group_name} -Name {vm_name} -Location {location} -Size {size} -PublicIpSku Standard -Zone 1 -Image {image} -Credential (New-Object System.Management.Automation.PSCredential('{username}', (ConvertTo-SecureString '{password}' -AsPlainText -Force)))"""
+	    print(command)
+	    result = self.run_powershell_command(command)
+	
+	    # Create a public IP address
+	    public_ip_command = f"""New-AzPublicIpAddress -Name {vm_name}PublicIP -ResourceGroupName {resource_group_name} -Location {location} -AllocationMethod Dynamic"""
+	    self.run_powershell_command(public_ip_command)
+	
+	    # Associate the public IP address with the VM's network interface
+	    associate_public_ip_command = f"""$vm = Get-AzVM -ResourceGroupName {resource_group_name} -Name {vm_name}; $nic = Get-AzNetworkInterface -ResourceId $vm.NetworkProfile.NetworkInterfaces[0].Id; Add-AzNetworkInterfaceIpConfig -Name {vm_name}IpConfig -NetworkInterface $nic -SubnetId $nic.IpConfigurations[0].Subnet.Id -PublicIpAddressId (Get-AzPublicIpAddress -ResourceGroupName {resource_group_name} -Name {vm_name}PublicIP).Id; Set-AzNetworkInterface -NetworkInterface $nic"""
+	    self.run_powershell_command(associate_public_ip_command)
+	    
+		# Get the VM and public IP information
+		get_vm_and_public_ip_command = f"""$vm = Get-AzVM -ResourceGroupName {resource_group_name} -Name {vm_name}; $publicIp = Get-AzPublicIpAddress -ResourceGroupName {resource_group_name} -Name {vm_name}PublicIP; $publicIp.IpAddress"""
+		ip_address = self.run_powershell_command(get_vm_and_public_ip_command)
+		
+		# Return the connection information
+		if "Windows" in image:
+		    connection_info = f"Use RDP to connect: mstsc /v:{ip_address} /u:{username} /p:{password}"
+		else:
+		    connection_info = f"Use SSH to connect: ssh {username}@{ip_address} -p 22"
+		
+	    # Add the VM to the virtual machine database
+	    self.couchdb.create_document(self.virtualMachine_DBName, {"connection_info":connection_info,"name": vm_name, "resource_group": resource_group_name, "location": location, "size": size, "image": image, "username": username, "password": password})
+	    
+	    return result + " command used was " + command + ". Connection info: " + connection_info
+
 
 
     def update_virtual_machine(self, resource_group_name, vm_name, size):
