@@ -59,7 +59,7 @@ print("Main thread finished")
         
 def updateTaskStatus(doc,status:int):
     taskNow = couchdb.get_document("tasks",doc["id"])
-    taskNow["status"] = DB.Schema.getStatus(status)
+    taskNow["status"] = DB.getTaskStatus(status)
     return couchdb.update_document("tasks",taskNow)
 
 def create_vm(doc):
@@ -84,7 +84,7 @@ def create_vm(doc):
     
 
     # Update the task status name to 'Completed'
-    doc["status"] = DB.Schema.getStatus(4)
+    doc["status"] = DB.getTaskStatus(4)
     doc["description"] = doc["description"]+" The host said =>" + res.encode('latin1').decode('unicode_escape')
     
     couchdb.update_document("tasks", doc)
