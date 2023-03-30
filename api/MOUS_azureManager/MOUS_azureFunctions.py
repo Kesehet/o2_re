@@ -1,6 +1,8 @@
 from funcs import database as DB
 from funcs import settings as S
 from api.MOUS_azureManager import MOUS_azureClasses as C
+import threading
+import time
 
 def getAllTasks():
     return DB.getTasks()
@@ -13,20 +15,47 @@ def main():
     # Get all documents from the 'tasks' database where the task status name is 'Not Started'
     result = couchdb.search("tasks", "by_status_name", key='"Not Started"')
     documents = result.get("rows", [])
-    
+    threads = []
+    # create and start threads
     for doc in documents:
-        task = doc.get("value",{})
-        task_name = task.get("name","")
-        updatedTaskID = updateTaskStatus(doc,1).get("id")
-        if task_name == "vm_creation":
-            
-            create_vm(couchdb.get_document("tasks",updatedTaskID))
-        if task_name == "vm_deletion":
-            delete_vm(doc)
-        
-        
-        # Get the data for the VM creation task from the task document
-        
+        t = threading.Thread(target=loop_thread, args=(doc,))
+        t.start()
+        threads.append(t)
+    return str(threads)
+
+
+
+
+
+
+def loop_thread(doc):
+    task = doc.get("value",{})
+    task_name = task.get("name","")
+    updatedTaskID = updateTaskStatus(doc,1).get("id")
+    if task_name == "vm_creation":
+        create_vm(couchdb.get_document("tasks",updatedTaskID))
+    if task_name == "vm_deletion":
+        delete_vm(doc)
+
+
+
+
+
+# main thread continues executing
+print("Main thread continuing to run")
+
+# more code here...
+
+print("Main thread finished")
+
+
+
+
+
+
+
+
+
         
 def updateTaskStatus(doc,status:int):
     taskNow = couchdb.get_document("tasks",doc["id"])
