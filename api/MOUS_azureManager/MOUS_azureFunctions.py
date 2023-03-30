@@ -207,5 +207,5 @@ Update-AzVM -ResourceGroupName {resource_group_name} -VM $vm"""
         import random
         import string
         random_string = ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(length))
-        return f"-{random_string}-{''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(length))}-"
+        return f"-{random_string}-{''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(length))}"
 
