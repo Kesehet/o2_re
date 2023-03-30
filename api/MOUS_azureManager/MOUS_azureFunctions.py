@@ -1,13 +1,13 @@
 from funcs import database as DB
 from funcs import settings as S
-from MOUS_azureClasses import AzureVmManager,VirtualMachine
+from api.MOUS_azureManager import MOUS_azureClasses as C
 
 def getAllTasks():
     return DB.getTasks()
 
 def main():
     couchdb = DB.CouchDB()
-    azure_vm_manager =  AzureVmManager(couchdb=couchdb)
+    azure_vm_manager =  C.AzureVmManager(couchdb=couchdb)
     # Get all documents from the 'tasks' database where the task status name is 'Not Started'
     result = couchdb.search("tasks", "by_status_name", key='"Not Started"')
     documents = result.get("rows", [])
@@ -63,5 +63,5 @@ def delete_vm(doc):
 
 def getManager(hostName = "Azure"):
     if hostName == "Azure":
-        return AzureVmManager(couchdb=DB.CouchDB())
-    return AzureVmManager(couchdb=DB.CouchDB())
+        return C.AzureVmManager(couchdb=DB.CouchDB())
+    return C.AzureVmManager(couchdb=DB.CouchDB())
