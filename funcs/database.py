@@ -56,6 +56,22 @@ class Schema:
      created_at = now.timestamp()
      updated_at = now.timestamp()
      name = urlencode(name.lower().replace(" ","-"))
+     
+     login_deatils = L.isLoggedIn(request)
+     if login_deatils[0] == 0:
+        return {}
+     
+     return {
+        "name":name,
+        "description":description,
+        "data":data,
+        "status":getStatus(status),
+        "task_list":task_list,
+        "created_by":login_deatils,
+        "updated_at":updated_at,
+        "created_at":created_at
+     }
+  def getStatus(index:int):
      stat = [
         {"name":"Not Started","description":" The task has been created, but work has not yet begun."},
         {"name":"In Progress","description":" Work has started on the task, but it is not yet complete."},
@@ -68,20 +84,8 @@ class Schema:
         {"name":"Urgent","description":" The task requires immediate attention and should be given priority over other tasks."},
         {"name":"High Priority","description":" The task is important and should be completed before lower priority tasks."}
      ]
-     login_deatils = L.isLoggedIn(request)
-     if login_deatils[0] == 0:
-        return {}
+     return stat[index]
      
-     return {
-        "name":name,
-        "description":description,
-        "data":data,
-        "status":stat[status],
-        "task_list":task_list,
-        "created_by":login_deatils,
-        "updated_at":updated_at,
-        "created_at":created_at
-     }
   
 
 #______________________GET FUNCTIONS___________________________

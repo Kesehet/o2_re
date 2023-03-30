@@ -5,8 +5,10 @@ from api.MOUS_azureManager import MOUS_azureClasses as C
 def getAllTasks():
     return DB.getTasks()
 
+
+couchdb = DB.CouchDB()
 def main():
-    couchdb = DB.CouchDB()
+    
     azure_vm_manager =  C.AzureVmManager(couchdb=couchdb)
     # Get all documents from the 'tasks' database where the task status name is 'Not Started'
     result = couchdb.search("tasks", "by_status_name", key='"Not Started"')
@@ -15,16 +17,21 @@ def main():
     for doc in documents:
         task = doc.get("value",{})
         task_name = task.get("name","")
-        return couchdb.get_document("tasks",doc["id"])
-        # if task_name == "vm_creation":
-        #     create_vm(doc)
-        # if task_name == "vm_deletion":
-        #     delete_vm(doc)
+        return updateTaskStatus(doc)
+        if task_name == "vm_creation":
+            couchdb.get_document("tasks",)
+            create_vm(doc)
+        if task_name == "vm_deletion":
+            delete_vm(doc)
         
         
         # Get the data for the VM creation task from the task document
         
         
+def updateTaskStatus(doc,status:int):
+    taskNow = couchdb.get_document("tasks",doc["id"])
+    taskNow["status"] = DB.Schema.getStatus(1)
+    return couchdb.update_document("tasks",taskNow)
 
 def create_vm(doc):
     couchdb = DB.CouchDB()
