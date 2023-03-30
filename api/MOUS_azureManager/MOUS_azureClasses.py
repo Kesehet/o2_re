@@ -1,65 +1,3 @@
-class VirtualMachine:
-    def __init__(self, vm_name, resource_group_name, location, size, image, username, password, manager: AzureVmManager):
-        self.vm_name = vm_name
-        self.resource_group_name = resource_group_name
-        self.location = location
-        self.size = size
-        self.image = image
-        self.username = username
-        self.password = password
-        self.manager = manager
-
-    def __str__(self):
-        return f"VirtualMachine(vm_name={self.vm_name}, resource_group_name={self.resource_group_name}, location={self.location}, size={self.size}, image={self.image}, username={self.username}, password={self.password})"
-
-    def create(self):
-        result = self.manager.create_virtual_machine(
-            resource_group_name=self.resource_group_name,
-            vm_name=self.vm_name,
-            location=self.location,
-            size=self.size,
-            image=self.image,
-            username=self.username,
-            password=self.password,
-        )
-        return result
-
-    def update_size(self, new_size):
-        result = self.manager.update_virtual_machine(
-            resource_group_name=self.resource_group_name,
-            vm_name=self.vm_name,
-            size=new_size,
-        )
-        self.size = new_size
-        return result
-
-    def delete(self):
-        result = self.manager.delete_virtual_machine(
-            resource_group_name=self.resource_group_name,
-            vm_name=self.vm_name,
-        )
-        return result
-
-    def rename(self, new_vm_name):
-        result = self.manager.rename_virtual_machine(
-            resource_group_name=self.resource_group_name,
-            vm_name=self.vm_name,
-            new_vm_name=new_vm_name,
-        )
-        self.vm_name = new_vm_name
-        return result
-    def load_from_database(self, name, host, resource_group):
-        vm_data = self.manager.couchdb.get_document(self.manager.virtualMachine_DBName, name)
-        self.name = vm_data['name']
-        self.host = host
-        self.resource_group = vm_data['resource_group']
-        self.location = vm_data['location']
-        self.size = vm_data['size']
-        self.image = vm_data['image']
-        self.username = vm_data['username']
-        self.password = vm_data['password']
-
-
 
 class AzureVmManager:
     
@@ -242,3 +180,81 @@ Update-AzVM -ResourceGroupName {resource_group_name} -VM $vm"""
         command = f"Restart-AzVM -ResourceGroupName {resource_group_name} -Name {vm_name}"
         result = self.run_powershell_command(command)
         return result
+    
+
+
+
+
+
+
+
+
+
+
+
+
+class VirtualMachine:
+    def __init__(self, vm_name, resource_group_name, location, size, image, username, password, manager: AzureVmManager):
+        self.vm_name = vm_name
+        self.resource_group_name = resource_group_name
+        self.location = location
+        self.size = size
+        self.image = image
+        self.username = username
+        self.password = password
+        self.manager = manager
+
+    def __str__(self):
+        return f"VirtualMachine(vm_name={self.vm_name}, resource_group_name={self.resource_group_name}, location={self.location}, size={self.size}, image={self.image}, username={self.username}, password={self.password})"
+
+    def create(self):
+        result = self.manager.create_virtual_machine(
+            resource_group_name=self.resource_group_name,
+            vm_name=self.vm_name,
+            location=self.location,
+            size=self.size,
+            image=self.image,
+            username=self.username,
+            password=self.password,
+        )
+        return result
+
+    def update_size(self, new_size):
+        result = self.manager.update_virtual_machine(
+            resource_group_name=self.resource_group_name,
+            vm_name=self.vm_name,
+            size=new_size,
+        )
+        self.size = new_size
+        return result
+
+    def delete(self):
+        result = self.manager.delete_virtual_machine(
+            resource_group_name=self.resource_group_name,
+            vm_name=self.vm_name,
+        )
+        return result
+
+    def rename(self, new_vm_name):
+        result = self.manager.rename_virtual_machine(
+            resource_group_name=self.resource_group_name,
+            vm_name=self.vm_name,
+            new_vm_name=new_vm_name,
+        )
+        self.vm_name = new_vm_name
+        return result
+    def load_from_database(self, name, host, resource_group):
+        vm_data = self.manager.couchdb.get_document(self.manager.virtualMachine_DBName, name)
+        self.name = vm_data['name']
+        self.host = host
+        self.resource_group = vm_data['resource_group']
+        self.location = vm_data['location']
+        self.size = vm_data['size']
+        self.image = vm_data['image']
+        self.username = vm_data['username']
+        self.password = vm_data['password']
+
+
+
+
+
