@@ -43,6 +43,21 @@ def getTasks():
 class Schema:
   def __init__(self) -> None:
       pass
+  def getStatus(index:int):
+     stat = [
+        {"name":"Not Started","description":" The task has been created, but work has not yet begun."},
+        {"name":"In Progress","description":" Work has started on the task, but it is not yet complete."},
+        {"name":"On Hold","description":" Work on the task has been temporarily paused or postponed."},
+        {"name":"Dependency Blocked","description":" The task is waiting for input, approval, or completion by someone else before it can proceed."},
+        {"name":"Completed","description":" The task has been finished and all necessary work has been done."},
+        {"name":"Cancelled","description":" The task has been cancelled and will not be completed."},
+        {"name":"Deferred","description":" The task has been delayed and will be completed at a later time."},
+        {"name":"Blocked","description":" The task is currently unable to proceed due to some obstacle or issue."},
+        {"name":"Urgent","description":" The task requires immediate attention and should be given priority over other tasks."},
+        {"name":"High Priority","description":" The task is important and should be completed before lower priority tasks."}
+     ]
+     return stat[index]
+  
   def getTask(
         self,
         name:str,
@@ -71,20 +86,7 @@ class Schema:
         "updated_at":updated_at,
         "created_at":created_at
      }
-  def getStatus(index:int):
-     stat = [
-        {"name":"Not Started","description":" The task has been created, but work has not yet begun."},
-        {"name":"In Progress","description":" Work has started on the task, but it is not yet complete."},
-        {"name":"On Hold","description":" Work on the task has been temporarily paused or postponed."},
-        {"name":"Dependency Blocked","description":" The task is waiting for input, approval, or completion by someone else before it can proceed."},
-        {"name":"Completed","description":" The task has been finished and all necessary work has been done."},
-        {"name":"Cancelled","description":" The task has been cancelled and will not be completed."},
-        {"name":"Deferred","description":" The task has been delayed and will be completed at a later time."},
-        {"name":"Blocked","description":" The task is currently unable to proceed due to some obstacle or issue."},
-        {"name":"Urgent","description":" The task requires immediate attention and should be given priority over other tasks."},
-        {"name":"High Priority","description":" The task is important and should be completed before lower priority tasks."}
-     ]
-     return stat[index]
+
      
   
 
