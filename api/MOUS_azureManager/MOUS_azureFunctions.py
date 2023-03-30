@@ -61,11 +61,14 @@ def create_vm(doc):
     couchdb.update_document("tasks", doc["value"])
 
 def delete_vm(doc):
-    couchdb = DB.CouchDB()
+    rgName = doc.get("data").get("group")
+    vmName = doc.get("data").get("vm_name")
+    manager = getManager("Azure")
+    manager.delete_virtual_machine(rgName,vmName)
 
 
 
 def getManager(hostName = "Azure"):
     if hostName == "Azure":
-        return C.AzureVmManager(couchdb=DB.CouchDB())
-    return C.AzureVmManager(couchdb=DB.CouchDB())
+        return C.AzureVmManager(couchdb)
+    return C.AzureVmManager(couchdb)
