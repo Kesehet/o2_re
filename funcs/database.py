@@ -71,7 +71,7 @@ class Schema:
         "updated_at":updated_at,
         "created_at":created_at
      }
-  def getStatus(self,index:int):
+  def getStatus(index:int):
      stat = [
         {"name":"Not Started","description":" The task has been created, but work has not yet begun."},
         {"name":"In Progress","description":" Work has started on the task, but it is not yet complete."},
