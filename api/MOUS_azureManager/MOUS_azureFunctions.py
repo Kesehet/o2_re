@@ -85,9 +85,9 @@ def create_vm(doc):
 
     # Update the task status name to 'Completed'
     doc["status"] = DB.Schema.getStatus(4)
-    doc["description"] = doc["value"]["description"]+" The host said =>" + res.encode('latin1').decode('unicode_escape')
+    doc["description"] = doc["description"]+" The host said =>" + res.encode('latin1').decode('unicode_escape')
     
-    couchdb.update_document("tasks", doc["value"])
+    couchdb.update_document("tasks", doc)
 
 def delete_vm(doc):
     rgName = doc.get("data").get("group")
