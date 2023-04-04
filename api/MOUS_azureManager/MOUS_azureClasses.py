@@ -12,7 +12,7 @@ class AzureVmManager:
         from funcs import shell as SHELL
         s = SHELL.run("pwsh -Command "+ command).encode('utf-8')
         import re
-        return re.sub(r'\\[^\n\\]*', '', s)
+        return re.sub(br'\\[^\n\\]*', b'', s).decode('utf-8')
 
     def create_resource_group(self, resource_group_name, location):
         '''
