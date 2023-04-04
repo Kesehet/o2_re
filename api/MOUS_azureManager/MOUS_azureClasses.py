@@ -10,7 +10,7 @@ class AzureVmManager:
 
     def run_powershell_command(self, command):
         from funcs import shell as SHELL
-        s = SHELL.run("pwsh -Command "+ command).encode('utf-8')
+        s = SHELL.run("pwsh -Command "+ command).encode('utf-8').decode("utf-8")
         return self.couchdb.convert_to_alphanumeric(s,'- {} []@!#$%^&*()')
 
     def create_resource_group(self, resource_group_name, location):
