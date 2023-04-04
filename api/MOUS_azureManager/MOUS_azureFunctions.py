@@ -33,7 +33,10 @@ def loop_thread(doc):
     task_name = task.get("name","")
     updatedTaskID = updateTaskStatus(doc,1).get("id")
     if task_name == "vm_creation":
-        create_vm(couchdb.get_document("tasks",updatedTaskID))
+        try:
+            create_vm(couchdb.get_document("tasks",updatedTaskID))
+        except:
+            updateTaskStatus(couchdb.get_document("tasks",updatedTaskID),7)
     if task_name == "vm_deletion":
         delete_vm(doc)
 
