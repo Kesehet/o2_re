@@ -233,7 +233,7 @@ class CouchDB:
         self.auth = S.CouchDBLoginAuth
 
 
-    def convert_to_alphanumeric(s, allow_chars=''):
+    def convert_to_alphanumeric(self,s, allow_chars=''):
       import re
       pattern = r'[^0-9a-zA-Z{}]+'.format(re.escape(allow_chars))
       s = re.sub(pattern, '', s)
