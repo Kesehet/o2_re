@@ -232,6 +232,13 @@ class CouchDB:
         self.host = S.CouchDBLoginURL
         self.auth = S.CouchDBLoginAuth
 
+
+    def convert_to_alphanumeric(s, allow_chars=''):
+      import re
+      pattern = r'[^0-9a-zA-Z{}]+'.format(re.escape(allow_chars))
+      s = re.sub(pattern, '', s)
+      return s
+
     def _make_url(self, *path):
         """
         Helper method to construct a URL from the provided path segments
